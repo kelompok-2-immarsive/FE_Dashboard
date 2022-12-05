@@ -2,7 +2,6 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import Login from './Pages/Login'
-import NavbarSamping from './Components/NavbarSamping'
 
 function App() {
   const [count, setCount] = useState(0)
