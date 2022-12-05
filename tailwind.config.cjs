@@ -12,7 +12,8 @@ module.exports = {
       'border-primary' : '#E0E0E0',
       'hover-secondary' : '#E3742B',
       'bg-primary' : '#F8F9FD',
-      'white' : '#FFFFFF'
+      'white' : '#FFFFFF',
+      'active' : '#1D2E60',
     }
   },
   plugins: [require('daisyui')],
