@@ -17,3 +17,11 @@
   background-color: white;
   margin-top: 12px;
 }
+
+.border-bawah{
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.outline-border{
+  border: 1px solid black;
+}
