@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NavigationBar = () => {
+const NavigationBar = ({name, onLogout}) => {
     return (
         <div className="navbar bg-base-100">
             <div className="flex-1">
@@ -8,7 +8,7 @@ const NavigationBar = () => {
             </div>
             <div className="flex-none gap-2">
                 <div>
-                    <p className='font-medium text-base'>Hello, Admin</p>
+                    <p className='font-medium text-base'>Hello, {name}</p>
                 </div>
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
@@ -17,7 +17,7 @@ const NavigationBar = () => {
                         </div>
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                        <li><button>Logout</button></li>
+                        <button onClick={onLogout}>Logout</button>
                     </ul>
                 </div>
             </div>

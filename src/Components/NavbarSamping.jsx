@@ -7,7 +7,7 @@ import {BiChalkboard} from 'react-icons/bi'
 const NavbarSamping = () => {
   return (
     <div>
-      <div className='bg-alta-primary max-w-[280px] h-screen'>
+      <div className='bg-alta-primary max-w-[280px] min-h-screen h-full w-[300px]'>
         <div>
           <img src={logo} alt="Logo" className='mx-auto py-10' />
         </div>
