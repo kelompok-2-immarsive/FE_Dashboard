@@ -2,6 +2,7 @@ import React from 'react'
 import {RiBook2Fill} from 'react-icons/ri'
 import {BsFillTrashFill} from 'react-icons/bs'
 import {AiFillEdit} from 'react-icons/ai'
+import {MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft} from 'react-icons/md'
 
 const TableList = () => {
   return (
@@ -50,8 +51,20 @@ const TableList = () => {
             <td className='bg-white text-black-default cursor-pointer'><BsFillTrashFill size={30}/></td>
         </tr>
         </tbody>
-        
+
     </table>
+    <div className='ml-auto mr-20 mt-5 pr-10 w-[30px]'>
+        <div className='flex'>
+            <div>
+                <label className='text-end mr-5 text-black-default' htmlFor="">1/20</label>
+            </div>
+            <div className='flex'>
+                <MdOutlineKeyboardArrowLeft className='cursor-pointer text-black-default' size={25}/>
+                <MdOutlineKeyboardArrowRight className='cursor-pointer ml-5 text-black-default' size={25}/>
+            </div>
+        </div>
+            
+     </div>
     </div>
     </div>
   )
