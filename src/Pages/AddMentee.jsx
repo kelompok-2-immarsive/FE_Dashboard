@@ -64,7 +64,7 @@ const AddMentee = () => {
                     <Input label='Home Address' type='text' placeholder='Home Address' change={(e) => setHomeAddress(e.target.value)}/>
                     <Input label='Email' type='email' placeholder='email_address@mail.com' change={(e) => setEmail(e.target.value)}/>
                     <div className='text-black-default flex items-center mt-2'>
-                      <label className='label-text text-xl w-[30%] text-black-default'>Gender</label>
+                      <label className='label-text text-xl w-[23%] text-black-default'>Gender</label>
                       <div className='h-12 flex justify-start' id='gender'>
                         <label className="label cursor-pointer">
                           <input 
@@ -101,7 +101,7 @@ const AddMentee = () => {
                   <div className='mt-3'>
                     <h1 className='font-bold text-2xl text-alta-primary'>Education Data</h1>
                     <div className='flex items-center mt-2'>
-                      <label className='label-text text-xl w-[30%] text-black-default'>Type</label>
+                      <label className='label-text text-xl w-[23%] text-black-default'>Type</label>
                       <div className='h-12 flex justify-start' id='gender'>
                         <label className="label cursor-pointer mr-3">
                           <input 
