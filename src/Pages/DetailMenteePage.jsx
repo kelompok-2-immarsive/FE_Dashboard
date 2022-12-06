@@ -6,7 +6,7 @@ import DetailMentee from '../Components/DetailMentee';
 const DetailMenteePage = () => {
     return (
         <div className='flex gap-6'>
-            <div className='w-[30%]'>
+            <div className='w-auto'>
                 <ProfileMentee
                     fullname={`mitro`}
                     address={`Blitar`}
@@ -17,7 +17,7 @@ const DetailMenteePage = () => {
                     telegram={`@mitro`}
                 />
             </div>
-            <div className='card border border-border-primary w-[65%]'>
+            <div className='card border border-border-primary w-auto'>
                 <div className="tabs">
                     <a className="tab tab-bordered">Profile Data</a>
                     <a className="tab tab-bordered tab-active">Feed / Log</a>

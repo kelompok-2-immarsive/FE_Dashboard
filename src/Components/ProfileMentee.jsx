@@ -13,7 +13,7 @@ const ProfileMentee = ({fullname, mentee_class, mentee_status, address, phone, t
                 </div>
                 <div className='mx-auto'>
                     <h2 className='text-xl text-alta-primary font-bold'>Class Details</h2>
-                    <p className='text-class-active'>{mentee_status}</p>
+                    <p>Status : <span className='text-class-active'>{mentee_status}</span></p>
                     <p>{mentee_class}</p>
                 </div>
                 <div className='mx-auto'>
