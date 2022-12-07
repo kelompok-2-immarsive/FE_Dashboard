@@ -8,6 +8,9 @@ import { useState } from 'react'
 const MenteeList = () => {
   const [listMentee, setlistMentee] = useState([])
   const [loading, setLoading] = useState(false)
+  const [userData, setUserData] = useState([])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [userPerPage, setUserPerPage] = useState(10)
 
   const getMenteeList = async () =>{
     await api.tableMenteeList()
