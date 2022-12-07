@@ -4,7 +4,7 @@ import {BsFillTrashFill} from 'react-icons/bs'
 import {AiFillEdit} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft} from 'react-icons/md'
 
-const TableList = () => {
+const TableList = ({data}) => {
   return (
     <div>
         <div className="overflow-x-auto max-w-[1600px] mx-auto bg-white px-5">
@@ -29,27 +29,37 @@ const TableList = () => {
         </thead>
         <tbody>
         {/* <!-- row 1 --> */}
-        <tr>
-            <th className='bg-white'>
-                <label>
-                    <input type="checkbox" className="checkbox outline-border" />
-                </label>
-            </th>
-            <td className='bg-white text-black-default'>
-                <div className="flex items-center space-x-3 bg-white text-black-default">
-                    <div className='bg-white text-black-default'>
-                        <div className="className='bg-white text-black-default'">Hart Hagerty</div>
+        {
+
+            data?.map(mentee => {
+                return (
+                    <tr>
+                <th className='bg-white'>
+                    <label>
+                        <input type="checkbox" className="checkbox outline-border" />
+                    </label>
+                </th>
+                <td className='bg-white text-black-default'>
+                    <div className="flex items-center space-x-3 bg-white text-black-default">
+                        <div className='bg-white text-black-default'>
+                            <div className="bg-white text-black-default">{mentee.name}</div>
+                        </div>
                     </div>
-                </div>
-            </td>
-            <td className='bg-white text-black-default'>Front End Engineer 10<br/></td>
-            <td className='bg-white text-black-default'>Graduate</td>
-            <td className='bg-white text-black-default'>IT</td>
-            <td className='bg-white text-black-default'>Male</td>
-            <td className='bg-white text-black-default cursor-pointer'><RiBook2Fill size={30}/></td>
-            <td className='bg-white text-black-default cursor-pointer'><AiFillEdit size={30}/></td>
-            <td className='bg-white text-black-default cursor-pointer'><BsFillTrashFill size={30}/></td>
-        </tr>
+                </td>
+                <td className='bg-white text-black-default'>{mentee.class}<br/></td>
+                <td className='bg-white text-black-default'>{mentee.mantee_status}</td>
+                <td className='bg-white text-black-default'>{mentee.category}</td>
+                <td className='bg-white text-black-default'>{mentee.gender}</td>
+                <td className='bg-white text-black-default cursor-pointer'><RiBook2Fill size={30}/></td>
+                <td className='bg-white text-black-default cursor-pointer'><AiFillEdit size={30}/></td>
+                <td className='bg-white text-black-default cursor-pointer'><BsFillTrashFill size={30}/></td>
+            </tr>
+                )
+                
+            })
+
+        }
+
         </tbody>
 
     </table>

@@ -13,6 +13,12 @@ export default {
             data: {
                 email: email,
                 password: password,
-            },
-        })
+            }
+        }),
+
+    tableMenteeList: () => 
+    instance({
+        method: `GET`,
+        url: `https://virtserver.swaggerhub.com/Anti-Gen/PROJCECT-BE13/1.0.0/mentees`,
+    })
 }
