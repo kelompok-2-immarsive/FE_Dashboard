@@ -16,9 +16,9 @@ const DashboardApp = ({ children }) => {
     return (
         <div className="bg-bg-primary flex">
             <NavbarSamping />
-            <main className='w-full p-10'>
+            <main className='w-full'>
                 <NavigationBar name={cookie.name} onLogout={() => onLogout()}/>
-                <div className='pt-10'>
+                <div className='pt-10 p-10'>
                     {children}
                 </div>
             </main>
