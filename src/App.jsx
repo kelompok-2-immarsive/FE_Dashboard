@@ -12,6 +12,7 @@ import UsersPage from './Pages/UsersPage';
 import MenteeList from './Pages/MenteeList';
 import Page404 from './Pages/Page404';
 
+
 function App() {
   const [cookie, setCookie] = useCookies();
 
@@ -36,7 +37,6 @@ function App() {
       </BrowserRouter>
     )
   }
-
 }
 
 export default App

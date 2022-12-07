@@ -4,34 +4,28 @@ import {BsFillTrashFill} from 'react-icons/bs'
 import {AiFillEdit} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft} from 'react-icons/md'
 
-const TableList = ({data}) => {
+const ClassTable = ({data}) => {
   return (
     <div>
-        <div className="overflow-x-auto max-w-[1600px] mx-auto bg-white px-5">
+        <div className="overflow-x-auto max-w-[1600px] mx-auto mt-10 bg-white px-5">
         <table className="table w-full bg-white">
         {/* <!-- head --> */}
         <thead >
-            <tr className='border-bawah'>
+            <tr>
                 <th className='bg-white'>
                     <label>
                         <input type="checkbox" className="checkbox outline-border" />
                     </label>
                 </th>
-                <th className='bg-white text-black-default'>Name</th>
                 <th className='bg-white text-black-default'>Class</th>
-                <th className='bg-white text-black-default'>Status</th>
-                <th className='bg-white text-black-default'>Category</th>
-                <th className='bg-white text-black-default'>Gender</th>
-                <th className='bg-white text-black-default'>Detail</th>
-                <th className='bg-white text-black-default'></th>
-                <th className='bg-white text-black-default'></th>
+                <th className='bg-white text-black-default'>Action</th>
             </tr>
         </thead>
         <tbody>
         {/* <!-- row 1 --> */}
         {
 
-            data?.map(mentee => {
+            data?.map(kelas => {
                 return (
                     <tr>
                 <th className='bg-white'>
@@ -42,17 +36,16 @@ const TableList = ({data}) => {
                 <td className='bg-white text-black-default'>
                     <div className="flex items-center space-x-3 bg-white text-black-default">
                         <div className='bg-white text-black-default'>
-                            <div className="bg-white text-black-default">{mentee.name}</div>
+                            <div className="bg-white text-black-default">{kelas.nama_kelas}</div>
                         </div>
                     </div>
                 </td>
-                <td className='bg-white text-black-default'>{mentee.class}<br/></td>
-                <td className='bg-white text-black-default'>{mentee.mantee_status}</td>
-                <td className='bg-white text-black-default'>{mentee.category}</td>
-                <td className='bg-white text-black-default'>{mentee.gender}</td>
-                <td className='bg-white text-black-default cursor-pointer'><RiBook2Fill size={30}/></td>
-                <td className='bg-white text-black-default cursor-pointer'><AiFillEdit size={30}/></td>
-                <td className='bg-white text-black-default cursor-pointer'><BsFillTrashFill size={30}/></td>
+                <td className='bg-white flex ml-auto text-black-default cursor-pointer'>
+                    <div className='mr-5'><AiFillEdit size={30}/></div>
+                    <div className='mr-5'><BsFillTrashFill size={30}/></div>
+                    <div><RiBook2Fill size={30}/></div>
+                </td>
+
             </tr>
                 )
                 
@@ -80,4 +73,4 @@ const TableList = ({data}) => {
   )
 }
 
-export default TableList
+export default ClassTable
