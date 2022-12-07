@@ -20,14 +20,12 @@ const Login = () => {
         e.preventDefault();
         await api.login({ email, password })
             .then(response => {
-                setData(response.data.data);
+                setCookie("name", response.data.data.name, { path: "/" });
+                setCookie("token", response.data.data.token, { path: "/" });
             })
             .catch(error => {
                 alert(error)
             })
-
-        setCookie("name", data.name, { path: "/" });
-        setCookie("token", data.token, { path: "/" });
     }
 
     return (
