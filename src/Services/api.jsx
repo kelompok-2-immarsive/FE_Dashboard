@@ -23,7 +23,7 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-    classList: () =>
+    classList: (token) =>
         instance({
             method: `GET`,
             url: `classes`,

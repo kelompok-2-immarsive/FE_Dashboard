@@ -4,7 +4,7 @@ import {BsFillTrashFill} from 'react-icons/bs'
 import {AiFillEdit} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft} from 'react-icons/md'
 
-const TableList = ({data, paginateFront, paginateBack}) => {
+const TableList = ({data, paginateFront, paginateBack, disabled}) => {
   return (
     <div>
         <div className="overflow-x-auto max-w-[1600px] mx-auto bg-white px-5 rounded-xl">
@@ -70,7 +70,7 @@ const TableList = ({data, paginateFront, paginateBack}) => {
             </div>
             <div className='flex'>
                 <MdOutlineKeyboardArrowLeft onClick={() => paginateBack()} className='cursor-pointer text-black-default' size={25}/>
-                <MdOutlineKeyboardArrowRight onClick={() => paginateFront()} className='cursor-pointer ml-5 text-black-default' size={25}/>
+                <button disabled={disabled} onClick={() => paginateFront()}><MdOutlineKeyboardArrowRight className={`cursor-pointer ml-5 ${disabled ? `text-grey-default` : `text-black-default`} `} size={25}/></button>
             </div>
         </div>
             
