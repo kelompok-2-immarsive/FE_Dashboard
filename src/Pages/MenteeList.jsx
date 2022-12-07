@@ -5,25 +5,19 @@ import SearchBar from '../Components/SearchBar'
 import api from '../Services/api'
 import { useState } from 'react'
 import { useCookies } from 'react-cookie'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+
 
 const MenteeList = () => {
   const [listMentee, setlistMentee] = useState([])
   const [loading, setLoading] = useState(false)
   const [cookie, setCookie] = useCookies();
 
-  const config = {
-    headers: {
-      Authorization: `Bearer ${cookie.token}`
-    }
-};
   const [userData, setUserData] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [userPerPage, setUserPerPage] = useState(10)
 
   const getMenteeList = async () =>{
-    await axios.get('http://35.202.68.77:80/classes', config)
+    await api.tableMenteeList(cookie.token)
     .then((response) =>{
       setLoading(true)
       setlistMentee(response.data.data)
@@ -39,10 +33,9 @@ const MenteeList = () => {
 
   const lastUserIndex = currentPage * userPerPage
   const firstUserIndex = lastUserIndex - userPerPage
-  const currentUser = listMentee.slice(firstUserIndex, lastUserIndex)
+  const currentUser = listMentee?.slice(firstUserIndex, lastUserIndex)
   const paginateFront = () => setCurrentPage(currentPage + 1);
   const paginateBack = () => setCurrentPage(currentPage - 1);
-  console.log(currentUser.length)
 
   return (
     
