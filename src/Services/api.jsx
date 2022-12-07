@@ -24,5 +24,13 @@ export default {
     instance({
         method: `GET`,
         url: `https://virtserver.swaggerhub.com/Anti-Gen/PROJCECT-BE13/1.0.0/classes`,
+    }),
+    getAllUsers:(token) => 
+    instance({
+        method : `GET`,
+        url : `user`,
+        headers : {
+            Authorization : `Bearer ${token}`
+        }
     })
 }
