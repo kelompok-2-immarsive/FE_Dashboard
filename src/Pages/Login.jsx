@@ -32,7 +32,6 @@ const Login = () => {
         navigate('/dashboard');
     }
 
-
     return (
         <div className='w-screen min-h-screen bg-alta-primary px-10 py-3 flex flex-col justify-between'>
             <div className=''>

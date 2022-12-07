@@ -1,22 +1,39 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+
 import './App.css'
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import DashboardApp from './Pages/DashboardApp';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import AddMentee from './Pages/AddMentee';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [cookie, setCookie] = useCookies();
+  const authedUser = cookie.token || 'undefined';
+  console.log(authedUser)
 
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Login />} />
-        <Route path='/dashboard' element={<DashboardApp children={<Dashboard />} />} />
-      </Routes>
-    </BrowserRouter>
-  )
+  if (authedUser === null || authedUser === 'undefined') {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path='/*' element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    )
+  }else{
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<DashboardApp children={<Dashboard />} />} />
+          <Route path='/dashboard' element={<DashboardApp children={<Dashboard />} />} />
+          <Route path='/mentee/add' element={<DashboardApp children={<AddMentee />} />} />
+        </Routes>
+      </BrowserRouter>
+    )
+  }
+
 }
 
 export default App

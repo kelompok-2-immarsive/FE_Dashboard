@@ -3,62 +3,60 @@ import logo from '../assets/logo-ALTA-v2@2x 1.png'
 import {AiOutlineHome, AiOutlineUser} from 'react-icons/ai'
 import {TbUsers} from 'react-icons/tb'
 import {BiChalkboard} from 'react-icons/bi'
+import { Link } from 'react-router-dom';
 
 const NavbarSamping = () => {
   return (
     <div>
       <div className='bg-alta-primary max-w-[280px] min-h-screen h-full w-[300px]'>
-        <div>
+        <Link to='/'>
           <img src={logo} alt="Logo" className='mx-auto py-10' />
-        </div>
+        </Link>
 
         <div className='max-w-[80%] mx-auto rounded-xl bg-active cursor-pointer'>
-          <div className='mt-10 w-[120px] p-2 flex'>
+          <Link to='/' className='mt-10 w-[120px] p-2 flex'>
             <div className='align-middle'>
               <AiOutlineHome className='text-white' size={40}/>
             </div>
             <div className='align-middle py-3 pl-3'>
               <label className='text-white font-bold' htmlFor="">Home</label>
             </div>
-          </div>
+          </Link>
         </div>
 
         <div className='max-w-[80%] mx-auto rounded-xl cursor-pointer'>
-          <div className='mt-10 w-[120px] p-2 flex'>
+          <Link to='/users' className='mt-10 w-[120px] p-2 flex'>
             <div className='align-middle'>
               <AiOutlineUser className='text-white' size={40}/>
             </div>
             <div className='align-middle py-3 pl-3'>
               <label className='text-white font-bold' htmlFor="">Users</label>
             </div>
-          </div>
+          </Link>
           <div className='ruler-bawah'></div>
         </div>
 
         <div className='max-w-[80%] mx-auto rounded-xl cursor-pointer'>
-          <div className='mt-10 w-[120px] p-2 flex'>
+          <Link to='/mentee' className='mt-10 w-[120px] p-2 flex'>
             <div className='align-middle'>
               <TbUsers className='text-white' size={40}/>
             </div>
             <div className='align-middle py-3 pl-3'>
               <label className='text-white font-bold' htmlFor="">Mentee</label>
             </div>
-          </div>
+          </Link>
         </div>
 
         <div className='max-w-[80%] mx-auto rounded-xl cursor-pointer'>
-          <div className='mt-10 w-[120px] p-2 flex'>
+          <Link to='/class' className='mt-10 w-[120px] p-2 flex'>
             <div className='align-middle'>
               <BiChalkboard className='text-white' size={40}/>
             </div>
             <div className='align-middle py-3 pl-3'>
               <label className='text-white font-bold' htmlFor="">Class</label>
             </div>
-          </div>
+          </Link>
         </div>
-
-
-        
       </div>
     </div>
   )
