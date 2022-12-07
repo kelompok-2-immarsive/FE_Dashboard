@@ -5,21 +5,31 @@ import { FaRegEye } from 'react-icons/fa';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import { useState } from 'react';
 import api from '../Services/api';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [seePwd, setSeePwd] = useState(false)
+    const navigate = useNavigate();
+    const [cookie, setCookie] = useCookies();
+    const [data, setData] = useState();
 
-    const onLoginHandler = async(e) => {
-        await api.login(email, password)
-        .then(response => {
-            console.log(response.data)
-        })
-        .catch(error => {
-            console.log(error)
-        })
+    const onLoginHandler = async (e) => {
         e.preventDefault();
+        await api.login({ email, password })
+            .then(response => {
+                setData(response.data.data);
+                console.log(response.data.data)
+            })
+            .catch(error => {
+                alert(error)
+            })
+
+        setCookie("name", data.name, { path: "/" });
+        setCookie("token", data.token, { path: "/" });
+        navigate('/dashboard');
     }
 
     return (
@@ -37,7 +47,7 @@ const Login = () => {
                     <div className="card w-[90%] lg:w-[70%] h-full bg-white text-alta-primary p-16">
                         <h1 className='text-5xl font-semibold'>Login</h1>
                         <p className='mt-3'>Please enter your email and password</p>
-                        <form className='w-full' onSubmit={() => onLoginHandler()}>
+                        <form className='w-full' onSubmit={(e) => onLoginHandler(e)}>
                             <div className="form-control w-full text-alta- mt-10 text-xl">
                                 <label className="label">
                                     <span className="label-text text-alta-primary">Email</span>
