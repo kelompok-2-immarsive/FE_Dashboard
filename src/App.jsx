@@ -8,13 +8,14 @@ import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import DashboardApp from './Pages/DashboardApp';
 import AddMentee from './Pages/AddMentee';
+import UsersPage from './Pages/UsersPage';
+import MenteeList from './Pages/MenteeList';
+import Page404 from './Pages/Page404';
 
 function App() {
   const [cookie, setCookie] = useCookies();
-  const authedUser = cookie.token || 'undefined';
-  console.log(authedUser)
 
-  if (authedUser === null || authedUser === 'undefined') {
+  if (cookie.token === null || cookie.token === 'undefined') {
     return (
       <BrowserRouter>
         <Routes>
@@ -28,7 +29,10 @@ function App() {
         <Routes>
           <Route path='/' element={<DashboardApp children={<Dashboard />} />} />
           <Route path='/dashboard' element={<DashboardApp children={<Dashboard />} />} />
+          <Route path='/mentee' element={<DashboardApp children={<MenteeList />} />} />
           <Route path='/mentee/add' element={<DashboardApp children={<AddMentee />} />} />
+          <Route path='/users' element={<DashboardApp children={<UsersPage />} />} />
+          <Route path='/*' element={<Page404 />} />
         </Routes>
       </BrowserRouter>
     )
