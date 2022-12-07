@@ -14,6 +14,7 @@ module.exports = {
       'bg-primary' : '#F8F9FD',
       'white' : '#FFFFFF',
       'active' : '#1D2E60',
+      'class-active' : '#22c55e',
     }
   },
   plugins: [require('daisyui')],
