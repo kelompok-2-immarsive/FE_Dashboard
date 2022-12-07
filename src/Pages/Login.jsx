@@ -7,27 +7,24 @@ import { useState } from 'react';
 import api from '../Services/api';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { useEffect } from 'react';
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [seePwd, setSeePwd] = useState(false)
-    const navigate = useNavigate();
-    const [cookie, setCookie] = useCookies();
-    const [data, setData] = useState();
 
     const onLoginHandler = async (e) => {
         e.preventDefault();
         await api.login({ email, password })
             .then(response => {
-                setData(response.data.data);
+                // setData(response.data.data);
+                setCookie("name", response.data.data.name, { path: "/" });
+                setCookie("token", response.data.data.token, { path: "/" });
             })
             .catch(error => {
                 alert(error)
             })
-
-        setCookie("name", data.name, { path: "/" });
-        setCookie("token", data.token, { path: "/" });
     }
 
     return (

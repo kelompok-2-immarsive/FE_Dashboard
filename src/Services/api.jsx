@@ -19,7 +19,7 @@ export default {
         instance({
             method: `GET`,
             url: `mentees`,
-            headers:{
+            headers: {
                 Authorization: `Bearer ${token}`
             }
         }),
@@ -27,16 +27,35 @@ export default {
         instance({
             method: `GET`,
             url: `classes`,
-            headers:{
+            headers: {
                 Authorization: `Bearer ${token}`
             }
         }),
-    getAllUsers:(token) => 
-    instance({
-        method : `GET`,
-        url : `user`,
-        headers : {
-            Authorization : `Bearer ${token}`
-        }
-    })
+
+    //user
+    getAllUsers: (token) =>
+        instance({
+            method: `GET`,
+            url: `user`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
+    addUser: (token, data) =>
+        instance({
+            method: 'POST',
+            url: 'user',
+            data: {
+                fullname: fullname,
+                email: email,
+                password: password,
+                role: team,
+                phone: phone,
+                status: status,
+                address: address,
+            },
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
 }
