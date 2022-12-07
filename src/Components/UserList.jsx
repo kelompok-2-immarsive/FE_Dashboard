@@ -20,6 +20,7 @@ const UserList = ({data}) => {
                 <th className='bg-white text-black-default'>Name</th>
                 <th className='bg-white text-black-default'>Email</th>
                 <th className='bg-white text-black-default'>Phone</th>
+                <th className='bg-white text-black-default'>Team</th>
                 <th className='bg-white text-black-default'>Role</th>
                 <th className='bg-white text-black-default'>Status</th>
                 <th className='bg-white text-black-default'>Detail</th>
@@ -59,6 +60,31 @@ const UserList = ({data}) => {
 
         }
 
+                        <th className='bg-white'>
+                            <label>
+                                <input type="checkbox" className="checkbox outline-border" />
+                            </label>
+                        </th>
+                        <td className='bg-white text-black-default'>
+                            <div className="flex items-center space-x-3 bg-white text-black-default">
+                                <div className='bg-white text-black-default'>
+                                    <div className="className='bg-white text-black-default'">{user.name}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td className='bg-white text-black-default'>{user.email}<br/></td>
+                        <td className='bg-white text-black-default'>Academic</td>
+                        <td className='bg-white text-black-default'>Admin</td>
+                        <td className='bg-white text-black-default'>Active</td>
+                        <td className='bg-white text-black-default cursor-pointer'><RiBook2Fill size={30}/></td>
+                        <td className='bg-white text-black-default cursor-pointer'><AiFillEdit size={30}/></td>
+                        <td className='bg-white text-black-default cursor-pointer'><BsFillTrashFill size={30}/></td>
+                    </tr>
+                )
+            })
+
+        }
+        
         </tbody>
 
     </table>
