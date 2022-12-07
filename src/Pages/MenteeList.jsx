@@ -5,13 +5,14 @@ import SearchBar from '../Components/SearchBar'
 import api from '../Services/api'
 import { useState } from 'react'
 import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom'
+
 
 
 const MenteeList = () => {
   const [listMentee, setlistMentee] = useState([])
   const [loading, setLoading] = useState(false)
   const [cookie, setCookie] = useCookies();
-
   const [userData, setUserData] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [userPerPage, setUserPerPage] = useState(10)
@@ -30,6 +31,9 @@ const MenteeList = () => {
   useEffect(() => {
     getMenteeList()
   }, [])
+
+  const navigate = useNavigate()
+
 
   const lastUserIndex = currentPage * userPerPage
   const firstUserIndex = lastUserIndex - userPerPage
