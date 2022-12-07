@@ -27,11 +27,10 @@ function App() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<DashboardApp children={<Dashboard />} />} />
-          <Route path='/dashboard' element={<DashboardApp children={<Dashboard />} />} />
-          <Route path='/mentee' element={<DashboardApp children={<MenteeList />} />} />
-          <Route path='/mentee/add' element={<DashboardApp children={<AddMentee />} />} />
-          <Route path='/users' element={<DashboardApp children={<UsersPage />} />} />
+          <Route path='/' element={<DashboardApp children={<Dashboard />} index={`dashboard`} />} />
+          <Route path='/mentee' element={<DashboardApp children={<MenteeList />} index={'mentee'}/>} />
+          <Route path='/mentee/add' element={<DashboardApp children={<AddMentee />} index={'mentee'} />} />
+          <Route path='/users' element={<DashboardApp children={<UsersPage />} index={'users'} />} />
           <Route path='/*' element={<Page404 />} />
         </Routes>
       </BrowserRouter>

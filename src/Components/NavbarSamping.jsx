@@ -5,7 +5,7 @@ import {TbUsers} from 'react-icons/tb'
 import {BiChalkboard} from 'react-icons/bi'
 import { Link } from 'react-router-dom';
 
-const NavbarSamping = () => {
+const NavbarSamping = ({index}) => {
   return (
     <div>
       <div className='bg-alta-primary max-w-[280px] min-h-screen h-full w-[300px]'>
@@ -13,8 +13,8 @@ const NavbarSamping = () => {
           <img src={logo} alt="Logo" className='mx-auto py-10' />
         </Link>
 
-        <div className='max-w-[80%] mx-auto rounded-xl bg-active cursor-pointer'>
-          <Link to='/' className='mt-10 w-[120px] p-2 flex'>
+        <div className={`max-w-[80%] mx-auto rounded-xl ${index === 'dashboard' && 'bg-active'} cursor-pointer`}>
+          <Link to='/' className='mt-5 w-[120px] p-2 flex'>
             <div className='align-middle'>
               <AiOutlineHome className='text-white' size={40}/>
             </div>
@@ -24,8 +24,8 @@ const NavbarSamping = () => {
           </Link>
         </div>
 
-        <div className='max-w-[80%] mx-auto rounded-xl cursor-pointer'>
-          <Link to='/users' className='mt-10 w-[120px] p-2 flex'>
+        <div className={`max-w-[80%] mx-auto rounded-xl ${index === 'users' && 'bg-active'} cursor-pointer`}>
+          <Link to='/users' className='mt-5 w-[120px] p-2 flex'>
             <div className='align-middle'>
               <AiOutlineUser className='text-white' size={40}/>
             </div>
@@ -33,11 +33,11 @@ const NavbarSamping = () => {
               <label className='text-white font-bold' htmlFor="">Users</label>
             </div>
           </Link>
-          <div className='ruler-bawah'></div>
         </div>
+        <div className='ruler-bawah'></div>
 
-        <div className='max-w-[80%] mx-auto rounded-xl cursor-pointer'>
-          <Link to='/mentee' className='mt-10 w-[120px] p-2 flex'>
+        <div className={`max-w-[80%] mx-auto rounded-xl ${index === 'mentee' && 'bg-active'} cursor-pointer`}>
+          <Link to='/mentee' className='mt-5 w-[120px] p-2 flex'>
             <div className='align-middle'>
               <TbUsers className='text-white' size={40}/>
             </div>
@@ -47,8 +47,8 @@ const NavbarSamping = () => {
           </Link>
         </div>
 
-        <div className='max-w-[80%] mx-auto rounded-xl cursor-pointer'>
-          <Link to='/class' className='mt-10 w-[120px] p-2 flex'>
+        <div className={`max-w-[80%] mx-auto rounded-xl ${index === 'class' && 'bg-active'} cursor-pointer`}>
+          <Link to='/class' className='mt-5 w-[120px] p-2 flex'>
             <div className='align-middle'>
               <BiChalkboard className='text-white' size={40}/>
             </div>
