@@ -30,7 +30,7 @@ export default {
             headers:{
                 Authorization: `Bearer ${token}`
             }
-        })
+        }),
 
     getAllUsers:(token) => 
     instance({
