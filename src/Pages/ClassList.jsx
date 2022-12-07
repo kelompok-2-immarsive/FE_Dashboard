@@ -40,16 +40,19 @@ const ClassList = () => {
 
 
   return (
-    <div className='p-10'>
-          <SearchBar />
-          {
-            listClass && loading === false ?
-              <ClassTable
-                data={listClass}
-              />
-              :
-              <p>Loadingg</p>
-          }
+    <div className='w-full max-w-screen h-screen bg-bg-primary'>
+          <div className='p-10'>
+              <SearchBar title={'Class List'} description={'Create, Edit Or Delete Class'}/>
+              {
+                  listClass && loading === false ?
+                  <ClassTable
+                    data = {listClass}
+                  />
+                  :
+                  <p className='text-black-default text-5xl'>Loadingg</p>
+              }
+              
+          </div>
     </div>
   )
 }

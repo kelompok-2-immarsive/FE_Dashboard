@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useCookies } from "react-cookie";
 
 const instance = axios.create({
     baseURL: `http://35.202.68.77:80/`,
@@ -16,7 +15,7 @@ export default {
             }
         }),
 
-    tableMenteeList: ({token}) =>
+    tableMenteeList: (token) =>
         instance({
             method: `GET`,
             url: `mentees`,
@@ -28,5 +27,17 @@ export default {
         instance({
             method: `GET`,
             url: `classes`,
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
         })
+
+    getAllUsers:(token) => 
+    instance({
+        method : `GET`,
+        url : `user`,
+        headers : {
+            Authorization : `Bearer ${token}`
+        }
+    })
 }
