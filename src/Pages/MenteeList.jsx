@@ -4,11 +4,13 @@ import TableList from '../Components/TableList'
 import SearchBar from '../Components/SearchBar'
 import api from '../Services/api'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const MenteeList = () => {
   const [listMentee, setlistMentee] = useState([])
   const [loading, setLoading] = useState(false)
-
+  const navigate = useNavigate()
+  
   const getMenteeList = async () =>{
     await api.tableMenteeList()
     .then((response) =>{
@@ -30,7 +32,10 @@ const MenteeList = () => {
   return (
     <div className='w-full max-w-screen h-screen bg-bg-primary'>
         <div className='p-10'>
-            <SearchBar/>
+            <SearchBar 
+              title={'Mentee List'} description={'Create, Edit Or Delete Mentees'}
+              add={() => navigate('/mentee/add')}
+              />
 
             <div className='mt-20'>
             {
