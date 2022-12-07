@@ -2,7 +2,7 @@ import React from 'react';
 
 const CardDashboard = ({ icons, title, month, total }) => {
     return (
-        <div className="card w-72 bg-base-100 shadow-xl">
+        <div className="card w-72 bg-white shadow-xl">
             <figure className='w-full h-2 bg-alta-primary'></figure>
             <div className="card-body text-alta-primary">
                 <div className='grid grid-cols-2'>

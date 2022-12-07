@@ -21,7 +21,6 @@ const Login = () => {
         await api.login({ email, password })
             .then(response => {
                 setData(response.data.data);
-                console.log(response.data.data)
             })
             .catch(error => {
                 alert(error)
@@ -29,7 +28,6 @@ const Login = () => {
 
         setCookie("name", data.name, { path: "/" });
         setCookie("token", data.token, { path: "/" });
-        navigate('/dashboard');
     }
 
     return (

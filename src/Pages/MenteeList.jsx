@@ -4,16 +4,24 @@ import TableList from '../Components/TableList'
 import SearchBar from '../Components/SearchBar'
 import api from '../Services/api'
 import { useState } from 'react'
+import { useCookies } from 'react-cookie'
+import axios from 'axios'
 
 const MenteeList = () => {
   const [listMentee, setlistMentee] = useState([])
   const [loading, setLoading] = useState(false)
+  const [cookie, setCookie] = useCookies();
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${cookie.token}`
+    }
+};
 
   const getMenteeList = async () =>{
-    await api.tableMenteeList()
+    await axios.get('http://35.202.68.77:80/classes', config)
     .then((response) =>{
       setLoading(true)
-      console.log(response.data.data)
       setlistMentee(response.data.data)
       setLoading(false)
     })
@@ -28,7 +36,7 @@ const MenteeList = () => {
 
   console.log(listMentee)
   return (
-    <div className='w-full max-w-screen h-screen bg-bg-primary'>
+    
         <div className='p-10'>
             <SearchBar/>
 
@@ -45,8 +53,7 @@ const MenteeList = () => {
             </div>
             
 
-        </div>
-    </div>
+        </div>    
   )
 }
 

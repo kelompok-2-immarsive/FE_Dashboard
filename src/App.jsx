@@ -8,12 +8,13 @@ import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import DashboardApp from './Pages/DashboardApp';
 import AddMentee from './Pages/AddMentee';
+import MenteeList from './Pages/MenteeList';
+import ClassList from './Pages/ClassList';
 
 
 function App() {
   const [cookie, setCookie] = useCookies();
   const authedUser = cookie.token || 'undefined';
-  console.log(authedUser)
 
   if (authedUser === null || authedUser === 'undefined') {
     return (
@@ -28,8 +29,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<DashboardApp children={<Dashboard />} />} />
-          <Route path='/dashboard' element={<DashboardApp children={<Dashboard />} />} />
           <Route path='/mentee/add' element={<DashboardApp children={<AddMentee />} />} />
+          <Route path='/mentee' element={<DashboardApp children={<MenteeList />} />} />
+          <Route path='/class' element={<DashboardApp children={<ClassList />} />} />
         </Routes>
       </BrowserRouter>
     )

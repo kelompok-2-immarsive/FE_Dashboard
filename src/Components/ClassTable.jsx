@@ -25,7 +25,7 @@ const ClassTable = ({data}) => {
         {/* <!-- row 1 --> */}
         {
 
-            data?.map(kelas => {
+            data?.map(item => {
                 return (
                     <tr>
                 <th className='bg-white'>
@@ -36,7 +36,7 @@ const ClassTable = ({data}) => {
                 <td className='bg-white text-black-default'>
                     <div className="flex items-center space-x-3 bg-white text-black-default">
                         <div className='bg-white text-black-default'>
-                            <div className="bg-white text-black-default">{kelas.nama_kelas}</div>
+                            <div className="bg-white text-black-default">{item.class_name}</div>
                         </div>
                     </div>
                 </td>
