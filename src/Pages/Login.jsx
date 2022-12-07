@@ -28,7 +28,6 @@ const Login = () => {
 
         setCookie("name", data.name, { path: "/" });
         setCookie("token", data.token, { path: "/" });
-        navigate('/dashboard');
     }
 
     return (

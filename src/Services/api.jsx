@@ -5,7 +5,7 @@ const instance = axios.create({
 })
 
 export default {
-    login: ({email, password}) =>
+    login: ({ email, password }) =>
         instance({
             method: `POST`,
             url: `login`,
@@ -15,16 +15,23 @@ export default {
             }
         }),
 
-    tableMenteeList: () => 
-    instance({
-        method: `GET`,
-        url: `https://virtserver.swaggerhub.com/Anti-Gen/PROJCECT-BE13/1.0.0/mentees`,
-    }),
-    classList: () => 
-    instance({
-        method: `GET`,
-        url: `https://virtserver.swaggerhub.com/Anti-Gen/PROJCECT-BE13/1.0.0/classes`,
-    }),
+    tableMenteeList: (token) =>
+        instance({
+            method: `GET`,
+            url: `mentees`,
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }),
+    classList: () =>
+        instance({
+            method: `GET`,
+            url: `classes`,
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        })
+
     getAllUsers:(token) => 
     instance({
         method : `GET`,
