@@ -5,7 +5,7 @@ import TableList from '../Components/TableList';
 const UsersPage = () => {
     return (
         <div className='p-10'>
-            <SearchBar />
+            <SearchBar title={'Users List'} description={'Create, Edit Or Delete Users'}/>
             <div className="card border border-border-primary">
                 <div className="card-body">
                     <TableList />
