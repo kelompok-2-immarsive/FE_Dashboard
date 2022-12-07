@@ -6,29 +6,36 @@ import NavigationBar from '../Components/NavigationBar'
 import { useState } from 'react'
 import api from '../Services/api'
 import { useEffect } from 'react'
+import { useCookies } from 'react-cookie'
+import axios from 'axios'
 
-const MenteeList = () => {
+const ClassList = () => {
 
-  const [listClass, setlistClass] = useState([])
+  const [listClass, setListClass] = useState([])
   const [loading, setLoading] = useState(false)
+  const [cookie, setCookie] = useCookies();
 
-  const getListClass = async () => {
-    await api.classList()
-    .then((response) => {
-      setLoading(true)
-      console.log(response.data.data)
-      setlistClass(response.data.data)
-      setLoading(false)
+  const config = {
+    headers: {
+      Authorization: `Bearer ${cookie.token}`
+    }
+  };
 
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  const getClassList = async () => {
+    await axios.get('http://35.202.68.77:80/classes', config)
+      .then((response) => {
+        setLoading(true)
+        setListClass(response.data.data)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   useEffect(() => {
-    getListClass()
-  }, [])
+    getClassList()
+  }, []);
 
 
 
@@ -50,4 +57,4 @@ const MenteeList = () => {
   )
 }
 
-export default MenteeList
+export default ClassList

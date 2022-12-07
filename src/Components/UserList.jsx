@@ -19,6 +19,7 @@ const UserList = ({data}) => {
                 </th>
                 <th className='bg-white text-black-default'>Name</th>
                 <th className='bg-white text-black-default'>Email</th>
+                <th className='bg-white text-black-default'>Phone</th>
                 <th className='bg-white text-black-default'>Team</th>
                 <th className='bg-white text-black-default'>Role</th>
                 <th className='bg-white text-black-default'>Status</th>
@@ -33,6 +34,32 @@ const UserList = ({data}) => {
             data.map(user => {
                 return (
                     <tr>
+                <th className='bg-white'>
+                    <label>
+                        <input type="checkbox" className="checkbox outline-border" />
+                    </label>
+                </th>
+                <td className='bg-white text-black-default'>
+                    <div className="flex items-center space-x-3 bg-white text-black-default">
+                        <div className='bg-white text-black-default'>
+                            <div className="bg-white text-black-default">{user.fullname}</div>
+                        </div>
+                    </div>
+                </td>
+                <td className='bg-white text-black-default'>{user.email}<br/></td>
+                <td className='bg-white text-black-default'>{user.phone}</td>
+                <td className='bg-white text-black-default'>{user.role}</td>
+                <td className='bg-white text-black-default'>{user.status}</td>
+                <td className='bg-white text-black-default cursor-pointer'><RiBook2Fill size={30}/></td>
+                <td className='bg-white text-black-default cursor-pointer'><AiFillEdit size={30}/></td>
+                <td className='bg-white text-black-default cursor-pointer'><BsFillTrashFill size={30}/></td>
+            </tr>
+                )
+                
+            })
+
+        }
+
                         <th className='bg-white'>
                             <label>
                                 <input type="checkbox" className="checkbox outline-border" />
