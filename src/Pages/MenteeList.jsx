@@ -50,8 +50,8 @@ const MenteeList = () => {
               currentUser && loading === false ? 
               <TableList
                data = {currentUser}
-               paginateBack ={ () => paginateBack()}
-               paginateFront ={ () => paginateFront()}
+               paginateBack ={ () => setCurrentPage(currentPage - 1)}
+               paginateFront ={ () => setCurrentPage(currentPage + 1)}
 
 
               />
