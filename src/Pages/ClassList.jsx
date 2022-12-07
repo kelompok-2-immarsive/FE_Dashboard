@@ -45,7 +45,7 @@ const MenteeList = () => {
                       data = {listClass}
                     />
                     :
-                    <p>Loadingg</p>
+                    <p className='text-black-default text-5xl'>Loadingg</p>
                 }
                
             </div>

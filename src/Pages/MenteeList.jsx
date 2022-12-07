@@ -40,7 +40,7 @@ const MenteeList = () => {
 
               />
               :
-              <p className='text-7xl text-white'>Loading</p>
+              <p className='text-7xl text-black-default'>Loading</p>
             }
             </div>
             
