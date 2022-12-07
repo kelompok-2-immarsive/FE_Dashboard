@@ -25,7 +25,6 @@ const MenteeList = () => {
       console.log(error)
     })
   }
-
   useEffect(() => {
     getMenteeList()
   }, [])
