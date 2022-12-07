@@ -31,7 +31,7 @@ const AddUser = () => {
   return (
     <div className='mt-5'>
       <h1 className='text-4xl font-medium  text-alta-primary'>Add Users</h1>
-      <Link to='/mentee' className='text-alta-primary hover:text-hover-secondary w-[150px] flex items-center justify-between p-3 cursor-pointer'><FaArrowLeft /><span>Back To List</span></Link>
+      <Link to='/users' className='text-alta-primary hover:text-hover-secondary w-[150px] flex items-center justify-between p-3 cursor-pointer'><FaArrowLeft /><span>Back To List</span></Link>
       <form
         className='my-10 px-10 py-8 bg-white rounded-lg border border-border-primary shadow-xl'
         onSubmit={() => addUser()}
@@ -39,7 +39,7 @@ const AddUser = () => {
         <div className='mt-3'>
           <h1 className='font-bold text-2xl text-alta-primary'>Personal Data</h1>
           <Input label='Fullname' type='text' placeholder='Fullname' change={(e) => setFullname(e.target.value)} />
-          <Input label='Passowrd' type='password' placeholder='Password' change={(e) => setPassword(e.target.value)}/>
+          <Input label='Password' type='password' placeholder='Password' change={(e) => setPassword(e.target.value)}/>
           <Input label='Email' type='email' placeholder='email_address@mail.com' change={(e) => setEmail(e.target.value)} />
           <Input
             label='Phone' type='tel' placeholder='0812-3456-7890'
