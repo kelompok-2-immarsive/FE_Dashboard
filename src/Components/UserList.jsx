@@ -29,9 +29,8 @@ const UserList = ({data}) => {
         </thead>
         <tbody>
         {/* <!-- row 1 --> */}
-        {
-
-            data?.map(user => {
+        {data &&
+            data.map(user => {
                 return (
                     <tr>
                 <th className='bg-white'>

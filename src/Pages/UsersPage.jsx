@@ -28,7 +28,7 @@ const UsersPage = () => {
             <SearchBar />
             <div className="card border border-border-primary">
                 <div className="card-body">
-                    <UserList data={allUsers}/>
+                    {allUsers ? <UserList data={allUsers}/>  : <p>loading...</p>}
                 </div>
             </div>
         </div>
