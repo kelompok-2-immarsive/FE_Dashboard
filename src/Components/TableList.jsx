@@ -4,10 +4,10 @@ import {BsFillTrashFill} from 'react-icons/bs'
 import {AiFillEdit} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft} from 'react-icons/md'
 
-const TableList = ({data}) => {
+const TableList = ({data, paginateFront, paginateBack}) => {
   return (
     <div>
-        <div className="overflow-x-auto max-w-[1600px] mx-auto bg-white px-5">
+        <div className="overflow-x-auto max-w-[1600px] mx-auto bg-white px-5 rounded-xl">
         <table className="table w-full bg-white">
         {/* <!-- head --> */}
         <thead >
@@ -69,8 +69,8 @@ const TableList = ({data}) => {
                 <label className='text-end mr-5 text-black-default' htmlFor="">1/20</label>
             </div>
             <div className='flex'>
-                <MdOutlineKeyboardArrowLeft className='cursor-pointer text-black-default' size={25}/>
-                <MdOutlineKeyboardArrowRight className='cursor-pointer ml-5 text-black-default' size={25}/>
+                <MdOutlineKeyboardArrowLeft onClick={() => paginateBack()} className='cursor-pointer text-black-default' size={25}/>
+                <MdOutlineKeyboardArrowRight onClick={() => paginateFront()} className='cursor-pointer ml-5 text-black-default' size={25}/>
             </div>
         </div>
             
