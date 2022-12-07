@@ -2,7 +2,7 @@ import React from 'react';
 
 const NavigationBar = ({name, onLogout}) => {
     return (
-        <div className="navbar bg-bg-primary">
+        <div className="navbar px-10 py-5 border-b border-border-primary">
             <div className="flex-1">
                 <a className="normal-case text-3xl font-bold text-alta-primary">IMMERSIVE DASHBOARD <br /> <span className='text-alta-secondary'>Alterra</span></a>
             </div>

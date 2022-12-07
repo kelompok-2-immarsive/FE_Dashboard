@@ -4,7 +4,7 @@ import NavbarSamping from '../Components/NavbarSamping';
 import {useCookies} from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 
-const DashboardApp = ({ children }) => {
+const DashboardApp = ({ children, index}) => {
     const [cookie, removeCookie] = useCookies();
     const navigate = useNavigate();
 
@@ -15,10 +15,10 @@ const DashboardApp = ({ children }) => {
     }
     return (
         <div className="bg-bg-primary flex">
-            <NavbarSamping />
-            <main className='w-full p-10'>
+            <NavbarSamping index={index} />
+            <main className='w-full'>
                 <NavigationBar name={cookie.name} onLogout={() => onLogout()}/>
-                <div className='pt-10'>
+                <div className='pt-10 p-10'>
                     {children}
                 </div>
             </main>
