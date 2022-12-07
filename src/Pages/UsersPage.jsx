@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import SearchBar from '../Components/SearchBar';
-import TableList from '../Components/TableList';
+import { useNavigate } from 'react-router-dom';
 import api from '../Services/api';
 import { useCookies } from 'react-cookie'
 import UserList from '../Components/UserList';
@@ -23,9 +23,15 @@ const UsersPage = () => {
     useEffect(() => {
         getAllUsers()
     }, [])
+
+    const navigate = useNavigate()
     return (
         <div className='p-10'>
-            <SearchBar title={'Users List'} description={'Create, Edit Or Delete Users'}/>
+            <SearchBar 
+            title={'Users List'} 
+            description={'Create, Edit Or Delete Users'}
+            add={() => navigate('/users/add')}
+            />
             <div className="card border border-border-primary">
                 <div className="card-body">
                     {allUsers ? <UserList data={allUsers}/>  : <p>loading...</p>}
