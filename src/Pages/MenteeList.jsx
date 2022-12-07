@@ -36,7 +36,7 @@ const MenteeList = () => {
   const currentUser = listMentee?.slice(firstUserIndex, lastUserIndex)
   // const paginateFront = () => setCurrentPage(currentPage + 1);
   // const paginateBack = () => setCurrentPage(currentPage - 1);
-  const disabled = currentPage == listMentee.length/userPerPage ? true : false;
+  const disabled = currentPage == listMentee?.length/userPerPage ? true : false;
 
   useEffect(() => {
     getMenteeList()

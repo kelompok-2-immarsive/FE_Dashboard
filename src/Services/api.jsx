@@ -31,7 +31,6 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-
     getAllUsers:(token) => 
     instance({
         method : `GET`,
