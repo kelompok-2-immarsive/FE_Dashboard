@@ -19,6 +19,7 @@ const Login = () => {
             .then(response => {
                 setCookie("name", response.data.data.name, { path: "/" });
                 setCookie("token", response.data.data.token, { path: "/" });
+                setCookie("user_id", response.data.data.user_id, {path: '/'});
             })
             .catch(error => {
                 alert(error)

@@ -33,7 +33,7 @@ export default {
         }),
         
     //user
-    getAllUsers: (token) =>
+    getUsers: (token) =>
         instance({
             method: `GET`,
             url: `user`,

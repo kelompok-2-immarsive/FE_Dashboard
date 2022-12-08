@@ -13,12 +13,13 @@ const DashboardApp = ({ children, index}) => {
         removeCookie("token")
         navigate('/');
     }
+    
     return (
-        <div className="bg-bg-primary flex">
+        <div className="bg-bg-primary flex h-full">
             <NavbarSamping index={index} />
-            <main className='w-full'>
+            <main className='w-full h-full'>
                 <NavigationBar name={cookie.name} onLogout={() => onLogout()}/>
-                <div className='pt-10 p-10'>
+                <div className='pt-10 p-10 h-full'>
                     {children}
                 </div>
             </main>

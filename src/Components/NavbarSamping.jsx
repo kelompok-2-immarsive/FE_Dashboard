@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const NavbarSamping = ({index}) => {
   return (
     <div>
-      <div className='bg-alta-primary max-w-[280px] min-h-screen h-full w-[300px]'>
+      <div className='bg-alta-primary max-w-[280px] min-h-screen max-h-full h-full w-[300px]'>
         <Link to='/'>
           <img src={logo} alt="Logo" className='mx-auto py-10' />
         </Link>
