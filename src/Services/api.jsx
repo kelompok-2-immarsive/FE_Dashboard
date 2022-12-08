@@ -31,12 +31,16 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-    createClassList: (token) =>
+    createClassList: (token, {user_id, class_name}) =>
         instance({
             method: `POST`,
             url: `classes`,
             headers:{
                 Authorization: `Bearer ${token}`
+            },
+            data: {
+                user_id: user_id,
+                class_name: class_name,
             }
         }),
     updateClassList: (token) =>

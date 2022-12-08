@@ -13,9 +13,13 @@ import PopUp from '../Components/PopUp'
 const ClassList = () => {
 
   const [listClass, setListClass] = useState([])
+  const [createListClass, setCreateListClass] = useState([])
   const [loading, setLoading] = useState(false)
   const [cookie, setCookie] = useCookies();
   const [display, setDisplay] = useState('hidden')
+  const [class_name, setAddClass] = useState('')
+  const [user_id, setIdUser] = useState('')
+
   const seePopup = () =>{
     setDisplay('block z-100')
   }
@@ -30,7 +34,7 @@ const ClassList = () => {
   };
 
   const getClassList = async () => {
-    await api.classList(cookie, token)
+    await api.classList(cookie.token)
       .then((response) => {
         setLoading(true)
         setListClass(response.data.data)
@@ -40,41 +44,44 @@ const ClassList = () => {
         console.log(error)
       })
   }
+  const user = 2
+  const parseinter = parseInt(user_id)
+  const createClass = async (e) => {
+    e.preventDefault()
+    // await api.createClassList(cookie.token, {user, class_name})
+    await axios.post(`http://34.71.210.70:80/classes`, config, {parseinter, class_name})
+      .then((response) => {
+        console.log(response.data.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+  
+  console.log(user, class_name)
 
-  const createClass = async () => {
-    await api.createClassList(cookie, token)
-      .then((response) => {
-        setLoading(true)
-        setListClass(response.data.data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
-
-  const updateClass = async () => {
-    await api. updateClassList(cookie, token)
-      .then((response) => {
-        setLoading(true)
-        setListClass(response.data.data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
-  const deleteClass = async () => {
-    await api. deleteClassList(cookie, token)
-      .then((response) => {
-        setLoading(true)
-        setListClass(response.data.data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
+  // const updateClass = async () => {
+  //   await api. updateClassList(cookie, token)
+  //     .then((response) => {
+  //       setLoading(true)
+  //       setListClass(response.data.data)
+  //       setLoading(false)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }
+  // const deleteClass = async () => {
+  //   await api. deleteClassList(cookie, token)
+  //     .then((response) => {
+  //       setLoading(true)
+  //       setListClass(response.data.data)
+  //       setLoading(false)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error)
+  //     })
+  // }
 
   useEffect(() => {
     getClassList()
@@ -98,7 +105,12 @@ const ClassList = () => {
               <PopUp 
               display={display} 
               hiddenPopup={hiddenPopup}
-              createClass={createClass}
+              addClasses={(e) => createClass(e)}
+              idUser={user_id}
+              setIdUser={(e) => setIdUser(e.target.value)}
+              addClass={class_name}
+              setClass={(e) => setAddClass(e.target.value)}
+
               />
               
           </div>

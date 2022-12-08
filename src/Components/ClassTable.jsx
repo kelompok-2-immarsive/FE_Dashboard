@@ -41,7 +41,7 @@ const ClassTable = ({data}) => {
                     </div>
                 </td>
                 <td className='bg-white flex ml-auto text-black-default cursor-pointer'>
-                    <button onClick={deleteClass(item.id)} className='mr-5'><AiFillEdit size={30}/></button>
+                    <button  className='mr-5'><AiFillEdit size={30}/></button>
                     <button className='mr-5'><BsFillTrashFill size={30}/></button>
                     <button><RiBook2Fill size={30}/></button>
                 </td>
