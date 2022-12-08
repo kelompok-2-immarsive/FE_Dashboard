@@ -63,12 +63,16 @@ export default {
                 class_name: class_name,
             }
         }),
-    updateClassList: (token) =>
+    updateClassList: (token, id, {class_name, user_id}) =>
         instance({
             method: `PUT`,
-            url: `classes/${id_class}`,
+            url: `classes/${id}`,
             headers:{
                 Authorization: `Bearer ${token}`
+            },
+            data: {
+                user_id: user_id,
+                class_name: class_name,
             }
         }),
     deleteClassList: (token) =>

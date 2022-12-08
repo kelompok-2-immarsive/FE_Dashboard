@@ -6,6 +6,7 @@ import api from '../Services/api'
 import { useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 import PopUp from '../Components/PopUp'
+import EditPopUp from '../Components/EditPopUp'
 
 const ClassList = () => {
 
@@ -14,6 +15,7 @@ const ClassList = () => {
   const [cookie, setCookie] = useCookies();
   const [display, setDisplay] = useState('hidden')
   const [class_name, setAddClass] = useState('')
+  const [className, setEditClass] = useState('')
   const user_id = parseInt(cookie.user_id);
   const [currentPage, setCurrentPage] = useState(1)
   const [userPerPage, setUserPerPage] = useState(5)
@@ -51,17 +53,24 @@ const ClassList = () => {
     setClose('my-modal-4');
   }
 
-  // const updateClass = async () => {
-  //   await api. updateClassList(cookie, token)
-  //     .then((response) => {
-  //       setLoading(true)
-  //       setListClass(response.data.data)
-  //       setLoading(false)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //     })
-  // }
+  const updateClass = async () => {
+    await api. updateClassList(cookie.token, {user_id, class_name})
+      .then((response) => {
+        setListClass(response.data.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  const onSubmitEditClass = (e) => {
+    e.preventDefault()
+    setEditClass('')
+    updateClass()
+    // setClose('my-modal-5')
+    console.log(className)
+  }
+  
   // const deleteClass = async () => {
   //   await api. deleteClassList(cookie, token)
   //     .then((response) => {
@@ -73,6 +82,7 @@ const ClassList = () => {
   //       console.log(error)
   //     })
   // }
+
 
   useEffect(() => {
     getClassList()
@@ -97,12 +107,15 @@ const ClassList = () => {
                     paginateBack={() => setCurrentPage(currentPage - 1)}
                     paginateFront={() => setCurrentPage(currentPage + 1)}
                     disabled={disabled}
+                    onUpdateClass={(e) => onSubmitEditClass(e)}
                   />
                   :
                   <p className='text-black-default text-5xl'>Loading</p>
               }
           </div>
           <PopUp onSubmitHandler={(e) => onSubmitAddClass(e)} addClass={class_name} setClass={(e) => setAddClass(e.target.value)} />
+
+
           {/* <PopUp /> */}
     </div>
   )

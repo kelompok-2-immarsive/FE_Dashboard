@@ -3,11 +3,40 @@ import {RiBook2Fill} from 'react-icons/ri'
 import {BsFillTrashFill} from 'react-icons/bs'
 import {AiFillEdit} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft} from 'react-icons/md'
+import EditPopUp from './EditPopUp'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import api from '../Services/api'
+import { useCookies } from 'react-cookie'
 
-const ClassTable = ({data, disabled, paginateFront, paginateBack}) => {
+
+const ClassTable = ({data, disabled, paginateFront, paginateBack, onUpdateClass}) => {
+
+    const [className, setClassName] = useState('')
+    const [cookie, setCookie] = useCookies()
+    const userId = parseInt(cookie.user_id)
+
+    const updateClass = async (id) => {
+        await api.updateClassList(cookie.token, id, {userId, className})
+          .then((response) => {
+            alert("Data Berhasil Di Ubah")
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    }
+    
+      const onSubmitEditClass = (id) => {
+        e.preventDefault()
+        updateClass(id)
+        // setEditClass('')
+        // setClose('my-modal-5')
+        console.log(className)
+      }
+
   return (
     <div>
-        <div className="overflow-x-auto max-w-[1600px] mx-auto mt-10 bg-white px-5">
+        <div className="overflow-x-auto max-w-[1600px] mx-auto mt-10 rounded-xl bg-white px-5">
         <table className="table w-full bg-white">
         {/* <!-- head --> */}
         <thead >
@@ -41,18 +70,21 @@ const ClassTable = ({data, disabled, paginateFront, paginateBack}) => {
                     </div>
                 </td>
                 <td className='bg-white flex ml-auto text-black-default cursor-pointer'>
-                    <button  className='mr-5'><AiFillEdit size={30}/></button>
-                    <button className='mr-5'><BsFillTrashFill size={30}/></button>
-                    <button><RiBook2Fill size={30}/></button>
+                <button className='mr-5'> <label className='cursor-pointer' htmlFor="my-modal-5"><AiFillEdit size={30}/></label> </button>
+                <button className='mr-5'><BsFillTrashFill size={30}/></button>
+                <button><RiBook2Fill size={30}/></button>
                 </td>
-
+                <EditPopUp
+                 editClass={className === ''? item.class_name : className}
+                 setClass={(e) => setClassName(e.target.value)}
+                 onSubmitHandler={(e) => onSubmitEditClass( item.id)}
+              />
             </tr>
                 )
                 
             })
 
         }
-
         </tbody>
 
     </table>
