@@ -20,7 +20,7 @@ const PopUp = ({ onSubmitHandler }) => {
         </label>
       </label>
     </>
-  )
+)
 }
 
 export default PopUp
