@@ -40,7 +40,22 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-
+    updateUser: (token, id,{ fullname, email, role, phone, address}) =>
+        instance({
+            method: `PUT`,
+            url: `user/${id}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                fullname: fullname,
+                email: email,
+                password: password,
+                role: role,
+                phone: phone,
+                address: address,
+            },
+        }),
         deleteUsers: (token, user_id) =>
         instance({
             method: `DELETE`,
@@ -62,6 +77,11 @@ export default {
                 phone: phone,
                 address: address,
             },
+        }),
+    getUser: (token,id) =>
+        instance({
+            method: `GET`,
+            url: `user/${id}`,
             headers: {
                 Authorization: `Bearer ${token}`
             }
