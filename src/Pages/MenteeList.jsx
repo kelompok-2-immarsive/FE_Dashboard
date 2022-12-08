@@ -30,12 +30,6 @@ const MenteeList = () => {
       })
   }
 
-  const getClass = async() => {
-    await api.classList(cookie.token)
-    .then(response => setClasslist(response.data.data))
-    .catch(err => console.log(err))
-  }
-
   const searchMentee = async(menteeName) => {
     await api.getMenteeByName(cookie.token, menteeName)
     .then(response => console.log(response.data))
@@ -73,7 +67,6 @@ const MenteeList = () => {
 
   useEffect(() => {
     getMenteeList()
-    getClass()
   }, [])
 
   return (
