@@ -12,11 +12,6 @@ const UsersPage = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [userPerPage, setUserPerPage] = useState(3)
 
-    const config = {
-        headers: { Authorization: `Bearer ${cookie.token}` }
-    };
-
-
 
     const getAllUsers = async () => {
         await api.getUsers(cookie.token)
@@ -61,7 +56,7 @@ const UsersPage = () => {
                             paginateBack={() => setCurrentPage(currentPage - 1)}
                             paginateFront={() => setCurrentPage(currentPage + 1)}
                             disabled={disabled}
-                            delUsers={(id) => getDeleteUsers(id)}
+                            onDelete={(id) => getDeleteUsers(id)}
                         />
                         : <p>loading...</p>}
                 </div>

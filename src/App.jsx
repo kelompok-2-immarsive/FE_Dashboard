@@ -17,7 +17,6 @@ import UpdateUser from './Pages/UpdateUser';
 import EditMentee from './Pages/EditMentee';
 import DetailMenteePage from './Pages/DetailMenteePage';
 import EditPopUp from './Components/EditPopUp';
-import EditUser from './Pages/EditUser';
 
 
 function App() {
@@ -43,9 +42,8 @@ function App() {
           <Route path='/mentee/edit' element={<DashboardApp children={<EditMentee/>} index={'mentee'} />} />
           <Route path='/mentee/detail' element={<DashboardApp children={<DetailMenteePage/>} index={'mentee'} />} />
           <Route path='/users' element={<DashboardApp children={<UsersPage />} index={'users'} />} />
-          <Route path='/users/:id/edit' element={<DashboardApp children={<UpdateUser />} index={'users'} />} />
+          <Route path='/users/edit' element={<DashboardApp children={<UpdateUser />} index={'users'} />} />
           <Route path='/users/add' element={<DashboardApp children={<AddUser />} index={'users'} />} />
-          <Route path='/users/edit' element={<DashboardApp children={<EditUser />} index={'users'} />} />
           <Route path='/class' element={<DashboardApp children={<ClassList />} index={'class'} />} />
           <Route path='/class/edit' element={<DashboardApp children={<EditPopUp />} index={'class'} />} />
           <Route path='/*' element={<Page404 />} />

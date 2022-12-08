@@ -5,7 +5,7 @@ import { AiFillEdit } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 
-const UserList = ({ data, paginateFront, paginateBack, disabled }) => {
+const UserList = ({ data, paginateFront, paginateBack, disabled, onDelete }) => {
 
     const navigate = useNavigate();
     const handleDetail = (user) => {
@@ -64,11 +64,15 @@ const UserList = ({ data, paginateFront, paginateBack, disabled }) => {
                                         <td className='bg-white text-black-default'>{user.status}</td>
                                         <td className='bg-white text-black-default cursor-pointer'><RiBook2Fill size={30} /></td>
                                         <td className='bg-white text-black-default cursor-pointer'>
-                                            <Link to={`/users/${user.id}/edit`}>
+                                            <button onClick={() => handleDetail(user)}>
                                                 <AiFillEdit size={30} />
-                                            </Link>
+                                            </button>
                                         </td>
-                                        <td className='bg-white text-black-default cursor-pointer'><BsFillTrashFill size={30} /></td>
+                                        <td className='bg-white text-black-default cursor-pointer'>
+                                            <button onClick={() => onDelete(user.id)}>
+                                                <BsFillTrashFill size={30} />
+                                            </button>
+                                        </td>
                                     </tr>
                                 )
 

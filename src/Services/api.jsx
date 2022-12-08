@@ -14,7 +14,7 @@ export default {
                 password: password,
             }
         }),
-        
+
     //user
     getUsers: (token) =>
         instance({
@@ -24,7 +24,7 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-    addUser: (token, {fullname, email, password, role, phone, address}) =>
+    addUser: (token, { fullname, email, password, role, phone, address }) =>
         instance({
             method: 'POST',
             url: 'user',
@@ -40,7 +40,7 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-    updateUser: (token, id,{ fullname, email, role, phone, address}) =>
+    updatedUser: (token, id, {fullname, email, role, phone, address }) =>
         instance({
             method: `PUT`,
             url: `user/${id}`,
@@ -50,13 +50,12 @@ export default {
             data: {
                 fullname: fullname,
                 email: email,
-                password: password,
                 role: role,
                 phone: phone,
                 address: address,
             },
         }),
-        deleteUsers: (token, user_id) =>
+    deleteUsers: (token, user_id) =>
         instance({
             method: `DELETE`,
             url: `user/${user_id}`,
@@ -65,20 +64,7 @@ export default {
             }
         }),
 
-        editUser: (token, users_id, {fullname, email, password, role, phone, address}) =>
-        instance({
-            method: 'PUT',
-            url: `user/${users_id}`,
-            data: {
-                fullname: fullname,
-                email: email,
-                password: password,
-                role: role,
-                phone: phone,
-                address: address,
-            },
-        }),
-    getUser: (token,id) =>
+    getUser: (token, id) =>
         instance({
             method: `GET`,
             url: `user/${id}`,
@@ -86,8 +72,8 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-        
-        //class
+
+    //class
     getAllClass: (token) =>
         instance({
             method: `GET`,
@@ -96,7 +82,7 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-    getClass: (token, id) => 
+    getClass: (token, id) =>
         instance({
             method: `GET`,
             url: `classes/${id}`,
@@ -104,11 +90,11 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-    createClassList: (token, {user_id, class_name}) =>
+    createClassList: (token, { user_id, class_name }) =>
         instance({
             method: `POST`,
             url: `classes`,
-            headers:{
+            headers: {
                 Authorization: `Bearer ${token}`
             },
             data: {
@@ -116,11 +102,11 @@ export default {
                 class_name: class_name,
             }
         }),
-    updateClassList: (token, id, {class_name, user_id}) =>
+    updateClassList: (token, id, { class_name, user_id }) =>
         instance({
             method: `PUT`,
             url: `classes/${id}`,
-            headers:{
+            headers: {
                 Authorization: `Bearer ${token}`
             },
             data: {
@@ -132,13 +118,13 @@ export default {
         instance({
             method: `DELETE`,
             url: `classes/${id_class}`,
-            headers:{
+            headers: {
                 Authorization: `Bearer ${token}`
             }
         }),
-        
-//Mentees
- tableMenteeList: (token) =>
+
+    //Mentees
+    tableMenteeList: (token) =>
         instance({
             method: `GET`,
             url: `mentees`,
@@ -146,80 +132,80 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-    addMentee:(token, {fullname,menteeClass,address,homeAddress,email,gender,telegram,phone,menteeStatus,emergencyPhone,emergencyName,emergencyStatus,category,major,graduate}) => 
-    instance({
-        method : `POST`,
-        url : `mentees`,
-        data : {
-            name: fullname,
-            class_id: parseInt(menteeClass),
-            address : address,
-            home_address: homeAddress,
-            email : email,
-            gender : gender,
-            telegram : telegram,
-            phone : phone,
-            mentee_status: menteeStatus,
-            emergency_phone: emergencyPhone,
-            emergency_name: emergencyName,
-            emergency_relation: emergencyStatus,
-            category : category,
-            major : major,
-            graduate : graduate
-
-        },
-        headers : {
-            Authorization : `Bearer ${token}`
-        }
-    }),
-    getMenteeByName:(token, menteeName) =>
+    addMentee: (token, { fullname, menteeClass, address, homeAddress, email, gender, telegram, phone, menteeStatus, emergencyPhone, emergencyName, emergencyStatus, category, major, graduate }) =>
         instance({
-            method : `GET`,
-            url : `mentee`,
-            headers:{
-                Authorization: `Bearer ${token}`
-            },
-            data : {Name : menteeName}
-        }),
-    deleteMentee:(token,idMentee) =>
-        instance({
-            method : `DELETE`,
-            url : `mentees/${idMentee}`,
-            headers:{
-                Authorization: `Bearer ${token}`
-            },
-        }),
-    editMentee:(token,idMentee, {fullname,menteeClass,address,homeAddress,email,gender,telegram,phone,menteeStatus,emergencyPhone,emergencyName,emergencyStatus,category,major,graduate}) =>
-        instance({
-            method : `PUT`,
-            url : `mentees/${idMentee}`,
-            headers:{
-                Authorization: `Bearer ${token}`
-            },
-            data : {
+            method: `POST`,
+            url: `mentees`,
+            data: {
                 name: fullname,
                 class_id: parseInt(menteeClass),
-                address : address,
+                address: address,
                 home_address: homeAddress,
-                email : email,
-                gender : gender,
-                telegram : telegram,
-                phone : phone,
+                email: email,
+                gender: gender,
+                telegram: telegram,
+                phone: phone,
                 mentee_status: menteeStatus,
                 emergency_phone: emergencyPhone,
                 emergency_name: emergencyName,
                 emergency_relation: emergencyStatus,
-                category : category,
-                major : major,
-                graduate : graduate
-    
+                category: category,
+                major: major,
+                graduate: graduate
+
+            },
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
+    getMenteeByName: (token, menteeName) =>
+        instance({
+            method: `GET`,
+            url: `mentee`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: { Name: menteeName }
+        }),
+    deleteMentee: (token, idMentee) =>
+        instance({
+            method: `DELETE`,
+            url: `mentees/${idMentee}`,
+            headers: {
+                Authorization: `Bearer ${token}`
             },
         }),
-    getMenteeFeedback:(token, idMentee) =>
+    editMentee: (token, idMentee, { fullname, menteeClass, address, homeAddress, email, gender, telegram, phone, menteeStatus, emergencyPhone, emergencyName, emergencyStatus, category, major, graduate }) =>
         instance({
-            method : `GET`,
-            url : `mentee/${idMentee}/feedback`,
-            headers:{
+            method: `PUT`,
+            url: `mentees/${idMentee}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                name: fullname,
+                class_id: parseInt(menteeClass),
+                address: address,
+                home_address: homeAddress,
+                email: email,
+                gender: gender,
+                telegram: telegram,
+                phone: phone,
+                mentee_status: menteeStatus,
+                emergency_phone: emergencyPhone,
+                emergency_name: emergencyName,
+                emergency_relation: emergencyStatus,
+                category: category,
+                major: major,
+                graduate: graduate
+
+            },
+        }),
+    getMenteeFeedback: (token, idMentee) =>
+        instance({
+            method: `GET`,
+            url: `mentee/${idMentee}/feedback`,
+            headers: {
                 Authorization: `Bearer ${token}`
             },
         })
