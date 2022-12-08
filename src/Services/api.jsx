@@ -40,13 +40,20 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-    updateUser: (id, token) =>
+    updateUser: (token, {id_user, fullname, email, role, phone, address}) =>
         instance({
             method: `PUT`,
-            url: `user/${id}`,
+            url: `user/${id_user}`,
             headers: {
                 Authorization: `Bearer ${token}`
-            }
+            },
+            data: {
+                fullname: fullname,
+                email: email,
+                role: role,
+                phone: phone,
+                address: address,
+            },
         }),
         
         //class
