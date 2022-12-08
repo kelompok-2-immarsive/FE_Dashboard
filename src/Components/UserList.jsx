@@ -3,7 +3,7 @@ import { RiBook2Fill } from 'react-icons/ri'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { AiFillEdit } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const UserList = ({ data, paginateFront, paginateBack, disabled }) => {
 
@@ -64,9 +64,9 @@ const UserList = ({ data, paginateFront, paginateBack, disabled }) => {
                                         <td className='bg-white text-black-default'>{user.status}</td>
                                         <td className='bg-white text-black-default cursor-pointer'><RiBook2Fill size={30} /></td>
                                         <td className='bg-white text-black-default cursor-pointer'>
-                                            <button onClick={() => handleDetail(user)}>
+                                            <Link to={`/users/${user.id}/edit`}>
                                                 <AiFillEdit size={30} />
-                                            </button>
+                                            </Link>
                                         </td>
                                         <td className='bg-white text-black-default cursor-pointer'><BsFillTrashFill size={30} /></td>
                                     </tr>
