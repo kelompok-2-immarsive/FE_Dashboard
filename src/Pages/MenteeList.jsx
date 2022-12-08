@@ -6,6 +6,7 @@ import api from '../Services/api'
 import { useState } from 'react'
 import { useCookies } from 'react-cookie'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const MenteeList = () => {
@@ -69,7 +70,7 @@ const MenteeList = () => {
   const lastUserIndex = currentPage * userPerPage
   const firstUserIndex = lastUserIndex - userPerPage
   const currentUser = listMentee?.slice(firstUserIndex, lastUserIndex)
-  const disabled = currentPage == listMentee?.length/userPerPage ? true : false;
+  const disabled = currentPage === Math.ceil(listMentee?.length / userPerPage) ? true : false;
 
   useEffect(() => {
     getMenteeList()

@@ -14,13 +14,9 @@ const ClassList = () => {
   const [cookie, setCookie] = useCookies();
   const [display, setDisplay] = useState('hidden')
   const [class_name, setAddClass] = useState('')
-<<<<<<< fix-error-add-class
   const user_id = parseInt(cookie.user_id);
-=======
-  const [user_id, setIdUser] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [userPerPage, setUserPerPage] = useState(5)
->>>>>>> main
 
 
   const getClassList = async () => {
@@ -48,15 +44,12 @@ const ClassList = () => {
     
   }
   
-<<<<<<< fix-error-add-class
   const onSubmitAddClass = (e) => {
     e.preventDefault();
     setAddClass('');
     createClass();
     setClose('my-modal-4');
   }
-=======
->>>>>>> main
 
   // const updateClass = async () => {
   //   await api. updateClassList(cookie, token)
@@ -88,7 +81,7 @@ const ClassList = () => {
   const lastUserIndex = currentPage * userPerPage
   const firstUserIndex = lastUserIndex - userPerPage
   const currentUser = listClass?.slice(firstUserIndex, lastUserIndex)
-  const disabled = currentPage === listClass.length/userPerPage ? true : false;
+  const disabled = currentPage === Math.ceil(listClass?.length / userPerPage) ? true : false;
 
   return (
     <div className='w-full max-w-screen h-screen bg-bg-primary relative'>
