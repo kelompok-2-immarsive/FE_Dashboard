@@ -5,11 +5,12 @@ import {BsFillTrashFill} from 'react-icons/bs'
 import {AiFillEdit} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft} from 'react-icons/md'
 
+
 const TableList = ({data, paginateFront, paginateBack, disabled, classList,edit, detail, delMentee}) => {
     const navigate = useNavigate()
   return (
     <div>
-        <div className="overflow-x-auto max-w-[1600px] mx-auto bg-white px-5 rounded-xl">
+        <div className="overflow-x-auto max-w-[1600px] mx-auto bg-white px-5 rounded-xl capitalize">
         <table className="table w-full bg-white">
         {/* <!-- head --> */}
         <thead >
@@ -56,13 +57,13 @@ const TableList = ({data, paginateFront, paginateBack, disabled, classList,edit,
                 <td className='bg-white text-black-default'>{mentee.mentee_status}</td>
                 <td className='bg-white text-black-default'>{mentee.category}</td>
                 <td className='bg-white text-black-default'>{mentee.gender}</td>
-                <td className='bg-white text-black-default cursor-pointer'
+                <td className='bg-white text-alta-primary cursor-pointer'
                     onClick={() => detail(mentee)}
                 ><RiBook2Fill size={30}/></td>
-                <td className='bg-white text-black-default cursor-pointer'
+                <td className='bg-white text-class-active cursor-pointer'
                     onClick={() => edit(mentee)}
                     ><AiFillEdit size={30}/></td>
-                <td className='bg-white text-black-default cursor-pointer'
+                <td className='bg-white text-alta-secondary cursor-pointer'
                     onClick={() => delMentee(mentee.id_mantee)}
                 ><BsFillTrashFill size={30}/></td>
             </tr>

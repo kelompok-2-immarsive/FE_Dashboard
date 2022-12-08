@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 
-const SearchBar = ({title, description, onSearch, button}) => {
+const SearchBar = ({title, description, button, onSearch}) => {
     const [keyword, setKeyword] = useState('')
     const keyPress = (e) => {
         if(e.key === 'Enter'){

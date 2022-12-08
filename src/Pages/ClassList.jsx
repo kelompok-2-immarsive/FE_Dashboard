@@ -1,64 +1,56 @@
 import React from 'react'
 import ClassTable from '../Components/ClassTable'
 import SearchBar from '../Components/SearchBar'
-import NavbarSamping from '../Components/NavbarSamping'
-import NavigationBar from '../Components/NavigationBar'
 import { useState } from 'react'
 import api from '../Services/api'
 import { useEffect } from 'react'
 import { useCookies } from 'react-cookie'
-import axios from 'axios'
 import PopUp from '../Components/PopUp'
 
 const ClassList = () => {
 
   const [listClass, setListClass] = useState([])
-  const [createListClass, setCreateListClass] = useState([])
   const [loading, setLoading] = useState(false)
   const [cookie, setCookie] = useCookies();
   const [display, setDisplay] = useState('hidden')
   const [class_name, setAddClass] = useState('')
-  const [user_id, setIdUser] = useState('')
+  const user_id = parseInt(cookie.user_id);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [userPerPage, setUserPerPage] = useState(5)
 
-  const seePopup = () =>{
-    setDisplay('block z-100')
-  }
-  const hiddenPopup = () =>{
-    setDisplay('hidden')
-  }
 
-  const config = {
-    headers: {
-      Authorization: `Bearer ${cookie.token}`
-    }
-  };
 
   const getClassList = async () => {
     await api.classList(cookie.token)
       .then((response) => {
         setLoading(true)
         setListClass(response.data.data)
+        console.log(response.data.data)
         setLoading(false)
       })
       .catch((error) => {
         console.log(error)
       })
   }
-  const user = 2
-  const parseinter = parseInt(user_id)
-  const createClass = async (e) => {
-    e.preventDefault()
-    // await api.createClassList(cookie.token, {user, class_name})
-    await axios.post(`http://34.71.210.70:80/classes`, config, {parseinter, class_name})
+
+
+  const createClass = async () => {
+    await api.createClassList(cookie.token, {user_id, class_name})
       .then((response) => {
-        console.log(response.data.data)
+        console.log(response)
       })
       .catch((error) => {
         console.log(error)
       })
+    
   }
   
-  console.log(user, class_name)
+  const onSubmitAddClass = (e) => {
+    e.preventDefault();
+    setAddClass('');
+    createClass();
+    setClose('my-modal-4');
+  }
 
   // const updateClass = async () => {
   //   await api. updateClassList(cookie, token)
@@ -103,8 +95,8 @@ const ClassList = () => {
                   <p className='text-black-default text-5xl'>Loading</p>
               }
           </div>
-          {/* <PopUp onSubmitHandler={fungsi tambah class} /> */}
-          <PopUp />
+          <PopUp onSubmitHandler={(e) => onSubmitAddClass(e)} addClass={class_name} setClass={(e) => setAddClass(e.target.value)} />
+          {/* <PopUp /> */}
     </div>
   )
 }
