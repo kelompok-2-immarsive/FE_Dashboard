@@ -19,11 +19,6 @@ const MenteeList = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [userPerPage, setUserPerPage] = useState(5)
 
-  const getClass = async() => {
-    await api.classList(cookie.token)
-    .then(response => setClasslist(response.data.data))
-    .catch(err => console.log(err))
-  }
   const getMenteeList = async () => {
     await api.tableMenteeList(cookie.token)
       .then((response) => {
@@ -74,7 +69,6 @@ const MenteeList = () => {
 
   useEffect(() => {
     getMenteeList()
-    getClass()
   }, [])
 
   return (
