@@ -13,6 +13,8 @@ import UsersPage from './Pages/UsersPage';
 import MenteeList from './Pages/MenteeList';
 import Page404 from './Pages/Page404';
 import AddUser from './Pages/AddUser';
+import EditMentee from './Pages/EditMentee';
+import DetailMenteePage from './Pages/DetailMenteePage';
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
           <Route path='/' element={<DashboardApp children={<Dashboard />} index={`dashboard`} />} />
           <Route path='/mentee' element={<DashboardApp children={<MenteeList />} index={'mentee'}/>} />
           <Route path='/mentee/add' element={<DashboardApp children={<AddMentee />} index={'mentee'} />} />
+          <Route path='/mentee/edit' element={<DashboardApp children={<EditMentee/>} index={'mentee'} />} />
+          <Route path='/mentee/detail' element={<DashboardApp children={<DetailMenteePage/>} index={'mentee'} />} />
           <Route path='/users' element={<DashboardApp children={<UsersPage />} index={'users'} />} />
           <Route path='/users/add' element={<DashboardApp children={<AddUser />} index={'users'} />} />
           <Route path='/class' element={<DashboardApp children={<ClassList />} index={'class'} />} />
