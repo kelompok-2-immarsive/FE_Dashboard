@@ -24,7 +24,7 @@ const DetailMenteePage = () => {
         .catch(err => console.log(err))
     }
     const getClass = async() => {
-        await api.classList(cookie.token)
+        await api.getAllClass(cookie.token)
         .then(response => {
             setClasslist(response.data.data)
             response.data.data.map(kelas => kelas.class_id === mentee.class_id && setKelas(kelas.class_name))
