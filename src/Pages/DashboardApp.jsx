@@ -14,7 +14,7 @@ const DashboardApp = ({ children, index}) => {
         navigate('/');
     }
     return (
-        <div className="bg-bg-primary flex">
+        <div className="bg-bg-primary flex w-screen">
             <NavbarSamping index={index} />
             <main className='w-full'>
                 <NavigationBar name={cookie.name} onLogout={() => onLogout()}/>
