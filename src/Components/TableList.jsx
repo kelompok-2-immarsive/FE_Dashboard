@@ -6,7 +6,7 @@ import {AiFillEdit} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft} from 'react-icons/md'
 
 
-const TableList = ({data, paginateFront, paginateBack, disabled, classList,edit, detail, delMentee}) => {
+const TableList = ({data, paginateFront, paginateBack, disabled, classList ,edit, detail, delMentee}) => {
     const navigate = useNavigate()
   return (
     <div>

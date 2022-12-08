@@ -5,7 +5,7 @@ import SearchBar from '../Components/SearchBar'
 import api from '../Services/api'
 import { useState } from 'react'
 import { useCookies } from 'react-cookie'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 
 const MenteeList = () => {
@@ -28,6 +28,12 @@ const MenteeList = () => {
       .catch((error) => {
         console.log(error)
       })
+  }
+
+  const getClass = async() => {
+    await api.getAllClass(cookie.token)
+    .then(response => setClasslist(response.data.data))
+    .catch(err => console.log(err))
   }
 
   const searchMentee = async(menteeName) => {
@@ -66,7 +72,8 @@ const MenteeList = () => {
   const disabled = currentPage === Math.ceil(listMentee?.length / userPerPage) ? true : false;
 
   useEffect(() => {
-    getMenteeList()
+    getMenteeList();
+    getClass();
   }, [])
   
   return (
@@ -74,7 +81,7 @@ const MenteeList = () => {
     <div className='p-10'>
       <SearchBar
         title={'Mentee List'} description={'Create, Edit Or Delete Mentees'}
-        button={<button className="btn bg-alta-primary hover:bg-hover-primary text-white" onClick={() => navigate('/mentee/add')}>Add New</button>} onSearch={(keyword) => searchMentee(keyword)}
+        button={<Link to="/mentee/add" className="btn bg-alta-primary hover:bg-hover-primary text-white">Add New</Link>} onSearch={(keyword) => searchMentee(keyword)}
       />
 
       <div className='mt-20'>
