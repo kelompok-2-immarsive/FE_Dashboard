@@ -10,6 +10,8 @@ const UsersPage = () => {
     const [allUsers, setAllUsers] = useState('')
     const [cookie, setCookie] = useCookies();
     const authToken = cookie.token 
+    const [currentPage, setCurrentPage] = useState(1)
+    const [userPerPage, setUserPerPage] = useState(2)
 
     const getAllUsers = async() => {
         await api.getAllUsers(authToken)

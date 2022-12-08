@@ -31,7 +31,7 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-
+        
     //user
     getAllUsers: (token) =>
         instance({
@@ -56,5 +56,31 @@ export default {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        })
+        }),
+        
+    //class
+    createClassList: (token) =>
+        instance({
+            method: `POST`,
+            url: `classes`,
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }),
+    updateClassList: (token) =>
+        instance({
+            method: `PUT`,
+            url: `classes/${id_class}`,
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }),
+    deleteClassList: (token) =>
+        instance({
+            method: `DELETE`,
+            url: `classes/${id_class}`,
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }),
 }
