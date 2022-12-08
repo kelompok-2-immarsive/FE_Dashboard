@@ -40,7 +40,7 @@ const UsersPage = () => {
                 description={'Create, Edit Or Delete Users'}
                 button={<Link to='/users/add' className='btn bg-alta-primary hover:bg-hover-primary'>Add New</Link>}
             />
-            <div className="card border border-border-primary">
+            <div className="card border border-border-primary bg-white">
                 <div className="card-body">
                     {currentUser ?
                         <UserList

@@ -82,7 +82,7 @@ export default {
                 class_name: class_name,
             }
         }),
-    deleteClassList: (token) =>
+    deleteClassList: (token, id_class) =>
         instance({
             method: `DELETE`,
             url: `classes/${id_class}`,
