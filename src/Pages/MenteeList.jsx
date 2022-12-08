@@ -13,9 +13,16 @@ const MenteeList = () => {
   const [loading, setLoading] = useState(false)
   const [classList, setClasslist] = useState()
   const [cookie, setCookie] = useCookies();
+  const navigate = useNavigate()
+  const [userData, setUserData] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
-  const [userPerPage, setUserPerPage] = useState(2)
+  const [userPerPage, setUserPerPage] = useState(5)
 
+  const getClass = async() => {
+    await api.classList(cookie.token)
+    .then(response => setClasslist(response.data.data))
+    .catch(err => console.log(err))
+  }
   const getMenteeList = async () => {
     await api.tableMenteeList(cookie.token)
       .then((response) => {
@@ -28,10 +35,35 @@ const MenteeList = () => {
       })
   }
 
-  const getClass = async() => {
-    await api.classList(cookie.token)
-    .then(response => setClasslist(response.data.data))
+
+  const searchMentee = async(menteeName) => {
+    await api.getMenteeByName(cookie.token, menteeName)
+    .then(response => console.log(response.data))
     .catch(err => console.log(err))
+  }
+
+  const goEdit = (data) => {
+    navigate('/mentee/edit', {
+      state : { data : data}
+    })
+  }
+
+  const goDetail = (data) => {
+    navigate('/mentee/detail', {
+      state : { data : data}
+    })
+  }
+  const deleteMentee = async(idMentee) => {
+    await api.deleteMentee(cookie.token, idMentee)
+    .then(response =>{
+      console.log(response)
+      alert('Data berhasil Diahapus')
+      getMenteeList()
+    })
+    .catch(err => {
+      console.log(err)
+      alert('Data gagal dihapus')
+    })
   }
 
   const lastUserIndex = currentPage * userPerPage
@@ -49,7 +81,7 @@ const MenteeList = () => {
     <div className='p-10'>
       <SearchBar
         title={'Mentee List'} description={'Create, Edit Or Delete Mentees'}
-        button={<Link to='/mentee/add' className='btn bg-alta-primary hover:bg-hover-primary'>Add New</Link>}
+        button={() => navigate('/mentee/add')} onSearch={(keyword) => searchMentee(keyword)}
       />
 
       <div className='mt-20'>
@@ -60,7 +92,9 @@ const MenteeList = () => {
               paginateBack={() => setCurrentPage(currentPage - 1)}
               paginateFront={() => setCurrentPage(currentPage + 1)}
               disabled={disabled} classList={classList}
-
+                edit={(data) => goEdit(data)}
+                detail={(data) => goDetail(data)}
+                delMentee={(id) => deleteMentee(id)}
             />
             :
             <p className='text-7xl text-black-default'>Loading</p>
