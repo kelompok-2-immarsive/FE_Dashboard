@@ -8,7 +8,7 @@ const Select = ({label, option, change, value}) => {
         <select className="select border-alta-primary w-full bg-white text-alta-primary" value={value} onChange={change}>
             {
                 option.map( (opt,index) => {
-                    return <option value={opt} key={index}>{opt}</option>
+                    return <option checked={opt === value && true} value={opt} key={index}>{opt}</option>
                 })
             }
         </select>

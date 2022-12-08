@@ -75,7 +75,7 @@ const MenteeList = () => {
     getMenteeList();
     getClass();
   }, [])
-
+  
   return (
 
     <div className='p-10'>

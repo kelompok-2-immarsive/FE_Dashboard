@@ -40,6 +40,52 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
+    updateUser: (token, id,{ fullname, email, role, phone, address}) =>
+        instance({
+            method: `PUT`,
+            url: `user/${id}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                fullname: fullname,
+                email: email,
+                password: password,
+                role: role,
+                phone: phone,
+                address: address,
+            },
+        }),
+        deleteUsers: (token, user_id) =>
+        instance({
+            method: `DELETE`,
+            url: `user/${user_id}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
+
+        editUser: (token, users_id, {fullname, email, password, role, phone, address}) =>
+        instance({
+            method: 'PUT',
+            url: `user/${users_id}`,
+            data: {
+                fullname: fullname,
+                email: email,
+                password: password,
+                role: role,
+                phone: phone,
+                address: address,
+            },
+        }),
+    getUser: (token,id) =>
+        instance({
+            method: `GET`,
+            url: `user/${id}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
         
         //class
     getAllClass: (token) =>
