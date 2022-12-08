@@ -113,6 +113,57 @@ export default {
         },
         headers : {
             Authorization : `Bearer ${token}`
-        },
-    })
+        }
+    }),
+    getMenteeByName:(token, menteeName) =>
+        instance({
+            method : `GET`,
+            url : `mentee`,
+            headers:{
+                Authorization: `Bearer ${token}`
+            },
+            data : {Name : menteeName}
+        }),
+    deleteMentee:(token,idMentee) =>
+        instance({
+            method : `DELETE`,
+            url : `mentees/${idMentee}`,
+            headers:{
+                Authorization: `Bearer ${token}`
+            },
+        }),
+    editMentee:(token,idMentee, {fullname,menteeClass,address,homeAddress,email,gender,telegram,phone,menteeStatus,emergencyPhone,emergencyName,emergencyStatus,category,major,graduate}) =>
+        instance({
+            method : `PUT`,
+            url : `mentees/${idMentee}`,
+            headers:{
+                Authorization: `Bearer ${token}`
+            },
+            data : {
+                name: fullname,
+                class_id: parseInt(menteeClass),
+                address : address,
+                home_address: homeAddress,
+                email : email,
+                gender : gender,
+                telegram : telegram,
+                phone : phone,
+                mentee_status: menteeStatus,
+                emergency_phone: emergencyPhone,
+                emergency_name: emergencyName,
+                emergency_relation: emergencyStatus,
+                category : category,
+                major : major,
+                graduate : graduate
+    
+            },
+        }),
+    getMenteeFeedback:(token, idMentee) =>
+        instance({
+            method : `GET`,
+            url : `mentee/${idMentee}/feedback`,
+            headers:{
+                Authorization: `Bearer ${token}`
+            },
+        })
 }
