@@ -14,23 +14,6 @@ export default {
                 password: password,
             }
         }),
-
-    tableMenteeList: (token) =>
-        instance({
-            method: `GET`,
-            url: `mentees`,
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }),
-    classList: (token) =>
-        instance({
-            method: `GET`,
-            url: `classes`,
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }),
         
     //user
     getAllUsers: (token) =>
@@ -57,7 +40,16 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-
+        
+        //class
+    classList: (token) =>
+        instance({
+            method: `GET`,
+            url: `classes`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
     createClassList: (token, {user_id, class_name}) =>
 
         instance({
@@ -87,4 +79,40 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
+        
+//Mentees
+ tableMenteeList: (token) =>
+        instance({
+            method: `GET`,
+            url: `mentees`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
+    addMentee:(token, {fullname,menteeClass,address,homeAddress,email,gender,telegram,phone,menteeStatus,emergencyPhone,emergencyName,emergencyStatus,category,major,graduate}) => 
+    instance({
+        method : `POST`,
+        url : `mentees`,
+        data : {
+            name: fullname,
+            class_id: parseInt(menteeClass),
+            address : address,
+            home_address: homeAddress,
+            email : email,
+            gender : gender,
+            telegram : telegram,
+            phone : phone,
+            mentee_status: menteeStatus,
+            emergency_phone: emergencyPhone,
+            emergency_name: emergencyName,
+            emergency_relation: emergencyStatus,
+            category : category,
+            major : major,
+            graduate : graduate
+
+        },
+        headers : {
+            Authorization : `Bearer ${token}`
+        },
+    })
 }
