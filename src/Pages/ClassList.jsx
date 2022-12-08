@@ -71,17 +71,16 @@ const ClassList = () => {
     console.log(className)
   }
   
-  // const deleteClass = async () => {
-  //   await api. deleteClassList(cookie, token)
-  //     .then((response) => {
-  //       setLoading(true)
-  //       setListClass(response.data.data)
-  //       setLoading(false)
-  //     })
-  //     .catch((error) => {
-  //       console.log(error)
-  //     })
-  // }
+  const deleteClass = async (id) => {
+    await api. deleteClassList(cookie.token, id)
+      .then((response) => {
+        alert("yey ke apus")
+        getClassList()
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
 
   useEffect(() => {
@@ -108,6 +107,7 @@ const ClassList = () => {
                     paginateFront={() => setCurrentPage(currentPage + 1)}
                     disabled={disabled}
                     onUpdateClass={(e) => onSubmitEditClass(e)}
+                    delMentee={(id) => deleteClass(id)}
                   />
                   :
                   <p className='text-black-default text-5xl'>Loading</p>

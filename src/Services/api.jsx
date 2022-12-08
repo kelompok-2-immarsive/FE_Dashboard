@@ -75,10 +75,10 @@ export default {
                 class_name: class_name,
             }
         }),
-    deleteClassList: (token) =>
+    deleteClassList: (token,id) =>
         instance({
             method: `DELETE`,
-            url: `classes/${id_class}`,
+            url: `classes/${id}`,
             headers:{
                 Authorization: `Bearer ${token}`
             }

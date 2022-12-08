@@ -10,7 +10,7 @@ import api from '../Services/api'
 import { useCookies } from 'react-cookie'
 
 
-const ClassTable = ({data, disabled, paginateFront, paginateBack, onUpdateClass}) => {
+const ClassTable = ({data, disabled, paginateFront, paginateBack, onUpdateClass, delMentee}) => {
 
     const [className, setClassName] = useState('')
     const [cookie, setCookie] = useCookies()
@@ -71,7 +71,7 @@ const ClassTable = ({data, disabled, paginateFront, paginateBack, onUpdateClass}
                 </td>
                 <td className='bg-white flex ml-auto text-black-default cursor-pointer'>
                 <button className='mr-5'> <label className='cursor-pointer' htmlFor="my-modal-5"><AiFillEdit size={30}/></label> </button>
-                <button className='mr-5'><BsFillTrashFill size={30}/></button>
+                <label onClick={() => delMentee(item.class_id)} className='mr-5'><BsFillTrashFill size={30}/></label>
                 <button><RiBook2Fill size={30}/></button>
                 </td>
                 <EditPopUp
