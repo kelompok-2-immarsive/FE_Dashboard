@@ -2,7 +2,7 @@ import React from 'react';
 
 const DetailMentee = ({fullname, gender, address, home_address, emergency_name, emergency_phone, emergency_relation, category, major, graduate}) => {
     return (
-        <div>
+        <div className='text-alta-primary'>
             <h1 className='text-2xl font-bold'>Personal Details</h1>
             <div className='grid grid-cols-2 gap-x-6 gap-y-2 border-b border-border-primary py-4'>
                 <div className=''>

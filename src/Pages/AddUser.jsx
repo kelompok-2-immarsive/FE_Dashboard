@@ -17,7 +17,7 @@ const AddUser = () => {
   const [address, setAddress] = useState('')
   const [cookie, setCookie] = useCookies();
 
-  const addUser = async() => {
+  const addUsers = async() => {
     await api.addUser(cookie.token, {fullname, password, email, role, phone, address})
       .then(response => {
         console.log(response.MSG)
@@ -28,8 +28,15 @@ const AddUser = () => {
   }
 
   const handleSubmit = (e) => {
+    addUsers();
     e.preventDefault();
-    addUser();
+    setFullname('')
+    setPassword('')
+    setEmail('')
+    setPhone('')
+    setRole('')
+    setStatus('')
+    
   }
 
   return (
@@ -42,10 +49,11 @@ const AddUser = () => {
       >
         <div className='mt-3'>
           <h1 className='font-bold text-2xl text-alta-primary'>Personal Data</h1>
-          <Input label='Fullname' type='text' placeholder='Fullname' change={(e) => setFullname(e.target.value)} />
-          <Input label='Password' type='password' placeholder='Password' change={(e) => setPassword(e.target.value)} />
-          <Input label='Email' type='email' placeholder='email_address@mail.com' change={(e) => setEmail(e.target.value)} />
+          <Input value={fullname} label='Fullname' type='text' placeholder='Fullname' change={(e) => setFullname(e.target.value)} />
+          <Input value={password} label='Password' type='password' placeholder='Password' change={(e) => setPassword(e.target.value)} />
+          <Input value={email} label='Email' type='email' placeholder='email_address@mail.com' change={(e) => setEmail(e.target.value)} />
           <Input
+            value={phone}
             label='Phone' type='tel' placeholder='0812-3456-7890'
             pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}" change={(e) => setPhone(e.target.value)} />
           <Select
@@ -53,7 +61,7 @@ const AddUser = () => {
             change={(e) => setRole(e.target.value)}
             value={role}
           />
-          <Input label='Your Address' type='text' placeholder='Your Address' change={(e) => setAddress(e.target.value)} />
+          <Input value={address} label='Your Address' type='text' placeholder='Your Address' change={(e) => setAddress(e.target.value)} />
           <Select
             label='Status' option={['Active', 'Graduate', 'Placement']}
             change={(e) => setStatus(e.target.value)}
@@ -62,7 +70,7 @@ const AddUser = () => {
 
         <div className='flex justify-end mt-10'>
           <button className='btn bg-alta-secondary border-none hover:bg-hover-secondary mx-3 text-white'>Cancel</button>
-          <input  className='btn bg-alta-primary border-none hover:bg-hover-primary mx-3 text-white' type='submit'  value={"Add User"}/>
+          <button  className='btn bg-alta-primary border-none hover:bg-hover-primary mx-3 text-white' type='submit' >Add User</button>
         </div>
       </form>
     </div>
