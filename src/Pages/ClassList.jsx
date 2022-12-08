@@ -22,7 +22,42 @@ const ClassList = () => {
   };
 
   const getClassList = async () => {
-    await axios.get('http://35.202.68.77:80/classes', config)
+    await api.classList(cookie, token)
+      .then((response) => {
+        setLoading(true)
+        setListClass(response.data.data)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  const createClass = async () => {
+    await api.createClassList(cookie, token)
+      .then((response) => {
+        setLoading(true)
+        setListClass(response.data.data)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
+  const updateClass = async () => {
+    await api. updateClassList(cookie, token)
+      .then((response) => {
+        setLoading(true)
+        setListClass(response.data.data)
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+  const deleteClass = async () => {
+    await api. deleteClassList(cookie, token)
       .then((response) => {
         setLoading(true)
         setListClass(response.data.data)
@@ -35,6 +70,9 @@ const ClassList = () => {
 
   useEffect(() => {
     getClassList()
+    createClass()
+    updateClass()
+    deleteClass()
   }, []);
 
 
