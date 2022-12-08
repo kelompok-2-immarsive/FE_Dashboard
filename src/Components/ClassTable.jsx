@@ -41,9 +41,9 @@ const ClassTable = ({data}) => {
                     </div>
                 </td>
                 <td className='bg-white flex ml-auto text-black-default cursor-pointer'>
-                    <div className='mr-5'><AiFillEdit size={30}/></div>
-                    <div className='mr-5'><BsFillTrashFill size={30}/></div>
-                    <div><RiBook2Fill size={30}/></div>
+                    <button  className='mr-5'><AiFillEdit size={30}/></button>
+                    <button className='mr-5'><BsFillTrashFill size={30}/></button>
+                    <button><RiBook2Fill size={30}/></button>
                 </td>
 
             </tr>

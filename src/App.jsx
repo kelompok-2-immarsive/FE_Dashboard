@@ -17,8 +17,9 @@ import AddUser from './Pages/AddUser';
 
 function App() {
   const [cookie, setCookie] = useCookies();
+  console.log(cookie.token);
 
-  if (cookie.token === null || cookie.token === 'undefined') {
+  if (cookie.token === null || cookie.token === 'undefined' || cookie.token === undefined ) {
     return (
       <BrowserRouter>
         <Routes>
