@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 const MenteeList = () => {
   const [listMentee, setlistMentee] = useState([])
   const [loading, setLoading] = useState(false)
+  const [classList, setClasslist] = useState()
   const [cookie, setCookie] = useCookies();
   const [userData, setUserData] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
@@ -28,6 +29,12 @@ const MenteeList = () => {
       })
   }
 
+  const getClass = async() => {
+    await api.classList(cookie.token)
+    .then(response => setClasslist(response.data.data))
+    .catch(err => console.log(err))
+  }
+
   const lastUserIndex = currentPage * userPerPage
   const firstUserIndex = lastUserIndex - userPerPage
   const currentUser = listMentee?.slice(firstUserIndex, lastUserIndex)
@@ -35,6 +42,7 @@ const MenteeList = () => {
 
   useEffect(() => {
     getMenteeList()
+    getClass()
   }, [])
 
   return (
@@ -52,7 +60,7 @@ const MenteeList = () => {
               data={currentUser}
               paginateBack={() => setCurrentPage(currentPage - 1)}
               paginateFront={() => setCurrentPage(currentPage + 1)}
-              disabled={disabled}
+              disabled={disabled} classList={classList}
 
             />
             :
