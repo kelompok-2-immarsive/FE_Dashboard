@@ -11,7 +11,8 @@ const UsersPage = () => {
     const [cookie, setCookie] = useCookies();
     const authToken = cookie.token 
     const [currentPage, setCurrentPage] = useState(1)
-    const [userPerPage, setUserPerPage] = useState(2)
+    const [userPerPage, setUserPerPage] = useState(3)
+    
 
     const getAllUsers = async() => {
         await api.getAllUsers(authToken)
@@ -26,6 +27,11 @@ const UsersPage = () => {
         getAllUsers()
     }, [])
 
+    const lastUserIndex = currentPage * userPerPage
+    const firstUserIndex = lastUserIndex - userPerPage
+    const currentUser = allUsers.slice(firstUserIndex, lastUserIndex)
+    const disabled = currentPage == allUsers?.length/userPerPage ? true : false;
+
     const navigate = useNavigate()
     return (
         <div className='p-10'>
@@ -36,7 +42,14 @@ const UsersPage = () => {
             />
             <div className="card border border-border-primary">
                 <div className="card-body">
-                    {allUsers ? <UserList data={allUsers}/>  : <p>loading...</p>}
+                    {currentUser ? 
+                    <UserList 
+                    data={currentUser} 
+                    paginateBack={() => setCurrentPage(currentPage - 1)}
+                    paginateFront={() => setCurrentPage(currentPage + 1)}
+                    disabled={disabled}
+                    />
+                    : <p>loading...</p>}
                 </div>
             </div>
         </div>
