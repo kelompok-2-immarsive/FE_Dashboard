@@ -1,6 +1,5 @@
 import React from 'react'
-
-const PopUp = ({ onSubmitHandler }) => {
+const PopUp = ({ onSubmitHandler, addClass, setClass }) => {
   return (
     <>
       <input type="checkbox" id="my-modal-4" className="modal-toggle" />
@@ -14,6 +13,8 @@ const PopUp = ({ onSubmitHandler }) => {
               type="text"
               className="block p-2 pl-10 input input-bordered border-alta-primary caret-alta-primary w-full flex-1 bg-white"
               placeholder="Input Nama Kelas"
+              value={addClass}
+              onChange={setClass}
             />
             <input type="submit" value='Add Class' className='btn bg-alta-primary border-none hover:bg-hover-primary mt-5' />
           </form>
