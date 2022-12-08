@@ -2,9 +2,21 @@ import React from 'react'
 import { RiBook2Fill } from 'react-icons/ri'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { AiFillEdit } from 'react-icons/ai'
-import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from 'react-icons/md'
+import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
 
 const UserList = ({ data, paginateFront, paginateBack, disabled }) => {
+
+    const navigate = useNavigate();
+    const handleDetail = (user) => {
+        navigate(`/users/edit`, {
+            state: {
+                user: user
+            }
+        });
+        // user.preventDefault();
+    }
+
     return (
         <div>
             <div className="overflow-x-auto max-w-[1600px] mx-auto bg-white px-5">
@@ -51,7 +63,11 @@ const UserList = ({ data, paginateFront, paginateBack, disabled }) => {
                                         <td className='bg-white text-black-default'>{user.role}</td>
                                         <td className='bg-white text-black-default'>{user.status}</td>
                                         <td className='bg-white text-black-default cursor-pointer'><RiBook2Fill size={30} /></td>
-                                        <td className='bg-white text-black-default cursor-pointer'><AiFillEdit size={30} /></td>
+                                        <td className='bg-white text-black-default cursor-pointer'>
+                                            <button onClick={() => handleDetail(user)}>
+                                                <AiFillEdit size={30} />
+                                            </button>
+                                        </td>
                                         <td className='bg-white text-black-default cursor-pointer'><BsFillTrashFill size={30} /></td>
                                     </tr>
                                 )
@@ -67,8 +83,8 @@ const UserList = ({ data, paginateFront, paginateBack, disabled }) => {
                             <label className='text-end mr-5 text-black-default' htmlFor="">1/20</label>
                         </div>
                         <div className='flex'>
-                            <button onClick={() => paginateBack()} className='cursor-pointer text-black-default' ><MdOutlineKeyboardArrowLeft size={25}/></button>
-                            <button disabled={disabled} onClick={() => paginateFront()} className='cursor-pointer ml-5 text-black-default' ><MdOutlineKeyboardArrowRight size={25}/></button>
+                            <button onClick={() => paginateBack()} className='cursor-pointer text-black-default' ><MdOutlineKeyboardArrowLeft size={25} /></button>
+                            <button disabled={disabled} onClick={() => paginateFront()} className='cursor-pointer ml-5 text-black-default' ><MdOutlineKeyboardArrowRight size={25} /></button>
                         </div>
                     </div>
 
