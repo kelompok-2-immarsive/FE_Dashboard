@@ -4,7 +4,8 @@ import {BsFillTrashFill} from 'react-icons/bs'
 import {AiFillEdit} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft} from 'react-icons/md'
 
-const ClassTable = ({data}) => {
+const ClassTable = ({data, disabled, paginateFront, paginateBack}) => {
+    console.log(disabled)
   return (
     <div>
         <div className="overflow-x-auto max-w-[1600px] mx-auto mt-10 bg-white px-5">
@@ -62,15 +63,17 @@ const ClassTable = ({data}) => {
                 <label className='text-end mr-5 text-black-default' htmlFor="">1/20</label>
             </div>
             <div className='flex'>
-                <MdOutlineKeyboardArrowLeft className='cursor-pointer text-black-default' size={25}/>
-                <MdOutlineKeyboardArrowRight className='cursor-pointer ml-5 text-black-default' size={25}/>
+                <button onClick={() => paginateBack()} className='cursor-pointer text-black-default'><MdOutlineKeyboardArrowLeft size={25}/></button>
+                <button disabled={disabled} onClick={() => paginateFront()} className='cursor-pointer ml-5 text-black-default' ><MdOutlineKeyboardArrowRight size={25}/></button>
             </div>
         </div>
+       
             
      </div>
     </div>
     </div>
   )
 }
+
 
 export default ClassTable

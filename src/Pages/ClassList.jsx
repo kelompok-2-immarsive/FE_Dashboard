@@ -19,6 +19,8 @@ const ClassList = () => {
   const [display, setDisplay] = useState('hidden')
   const [class_name, setAddClass] = useState('')
   const [user_id, setIdUser] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [userPerPage, setUserPerPage] = useState(5)
 
   const seePopup = () =>{
     setDisplay('block z-100')
@@ -58,7 +60,6 @@ const ClassList = () => {
       })
   }
   
-  console.log(user, class_name)
 
   // const updateClass = async () => {
   //   await api. updateClassList(cookie, token)
@@ -87,6 +88,11 @@ const ClassList = () => {
     getClassList()
   }, []);
 
+  const lastUserIndex = currentPage * userPerPage
+  const firstUserIndex = lastUserIndex - userPerPage
+  const currentUser = listClass?.slice(firstUserIndex, lastUserIndex)
+  const disabled = currentPage === listClass.length/userPerPage ? true : false;
+
   return (
     <div className='w-full max-w-screen h-screen bg-bg-primary relative'>
           <div className='p-10'>
@@ -95,9 +101,12 @@ const ClassList = () => {
                 button={<label htmlFor="my-modal-4" className="btn bg-alta-primary hover:bg-hover-primary border-none">Add New</label>}
                 />
               {
-                  listClass && loading === false ?
+                  currentUser && loading === false ?
                   <ClassTable
-                    data = {listClass}
+                    data = {currentUser}
+                    paginateBack={() => setCurrentPage(currentPage - 1)}
+                    paginateFront={() => setCurrentPage(currentPage + 1)}
+                    disabled={disabled}
                   />
                   :
                   <p className='text-black-default text-5xl'>Loading</p>

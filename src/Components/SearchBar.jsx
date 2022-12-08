@@ -4,7 +4,7 @@ import { GoSearch } from 'react-icons/go';
 
 const SearchBar = ({ title, description, button }) => {
     const [keyword, setKeyword] = useState('')
-    console.log(keyword)
+
 
     return (
         <div className='text-alta-primary w-full'>

@@ -13,7 +13,6 @@ const MenteeList = () => {
   const [loading, setLoading] = useState(false)
   const [classList, setClasslist] = useState()
   const [cookie, setCookie] = useCookies();
-  const [userData, setUserData] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [userPerPage, setUserPerPage] = useState(2)
 
