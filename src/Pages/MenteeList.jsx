@@ -5,7 +5,7 @@ import SearchBar from '../Components/SearchBar'
 import api from '../Services/api'
 import { useState } from 'react'
 import { useCookies } from 'react-cookie'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const MenteeList = () => {
@@ -28,9 +28,6 @@ const MenteeList = () => {
       })
   }
 
-  const navigate = useNavigate()
-
-
   const lastUserIndex = currentPage * userPerPage
   const firstUserIndex = lastUserIndex - userPerPage
   const currentUser = listMentee?.slice(firstUserIndex, lastUserIndex)
@@ -47,7 +44,7 @@ const MenteeList = () => {
     <div className='p-10'>
       <SearchBar
         title={'Mentee List'} description={'Create, Edit Or Delete Mentees'}
-        add={() => navigate('/mentee/add')}
+        button={<Link to='/mentee/add' className='btn bg-alta-primary hover:bg-hover-primary'>Add New</Link>}
       />
 
       <div className='mt-20'>

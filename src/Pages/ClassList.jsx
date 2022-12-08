@@ -50,7 +50,7 @@ const ClassList = () => {
           <div className='p-10'>
               <SearchBar 
                 title={'Class List'} description={'Create, Edit Or Delete Class'}
-                add={() => seePopup()}
+                button={<label htmlFor="my-modal-4" className="btn bg-alta-primary hover:bg-hover-primary border-none">Add New</label>}
                 />
               {
                   listClass && loading === false ?
@@ -60,9 +60,9 @@ const ClassList = () => {
                   :
                   <p className='text-black-default text-5xl'>Loading</p>
               }
-              <PopUp display={display} hiddenPopup={hiddenPopup}/>
-              
           </div>
+          {/* <PopUp onSubmitHandler={fungsi tambah class} /> */}
+          <PopUp />
     </div>
   )
 }

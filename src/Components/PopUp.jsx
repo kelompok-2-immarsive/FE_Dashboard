@@ -1,26 +1,25 @@
 import React from 'react'
-import { useState } from 'react'
 
-const PopUp = ({display, hiddenPopup }) => {
+const PopUp = ({ onSubmitHandler }) => {
   return (
-    <div className={`w-screen h-screen absolute top-[-20%] left-[-20%] bg-[#0000007d] ${display} flex justify-center pt-10`}>
-        <div className="card w-1/2 h-1/3 bg-white text-neutral-content p-10 shadow-xl rounded-xl text-alta-primary">
-        <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2"
-        onClick={() => hiddenPopup()}>✕</label>
-            <div className="card-body items-center text-center">
+    <>
+      <input type="checkbox" id="my-modal-4" className="modal-toggle" />
+      <label htmlFor="my-modal-4" className="modal cursor-pointer">
+        <label className="modal-box relative p-10 h-auto" htmlFor="">
+        <label htmlFor="my-modal-4" className="btn btn-sm btn-circle absolute right-5 top-5">✕</label>
+          <h3 className="text-2xl font-bold">Add New Class</h3>
+          <p className="py-4 mb-7">Add new class with full name class and batch</p>
+          <form onSubmit={onSubmitHandler} className='text-end'>
             <input
-                type="text"
-                className="block p-2 pl-10 input input-bordered border-alta-primary caret-alta-primary w-full bg-white"
-                placeholder="Input Nama Kelas"
+              type="text"
+              className="block p-2 pl-10 input input-bordered border-alta-primary caret-alta-primary w-full flex-1 bg-white"
+              placeholder="Input Nama Kelas"
             />
-            <div className="card-actions flex justify-end mt-5">
-                <button className="btn bg-alta-secondary hover:bg-hover-secondary text-white"
-                onClick={() => hiddenPopup()}>Cancel</button>
-                <button className="btn bg-alta-primary hover:bg-hover-primary text-white">Add Class</button>
-            </div>
-        </div>
-        </div>
-    </div> 
+            <input type="submit" value='Add Class' className='btn bg-alta-primary border-none hover:bg-hover-primary mt-5' />
+          </form>
+        </label>
+      </label>
+    </>
   )
 }
 
