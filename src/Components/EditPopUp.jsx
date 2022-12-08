@@ -3,9 +3,6 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import api from '../Services/api'
 const EditPopUp = ({editClass, setClass, onSubmitHandler}) => {
-
-    const location = useLocation()
-    const data = location?.state?.data
     // const [className, setClassName] = useState(data.editClass)
 
     // const updateClass = async () => {
@@ -38,7 +35,7 @@ const EditPopUp = ({editClass, setClass, onSubmitHandler}) => {
             />
             <div className="modal-action">
               <button type="submit" value='Add Class' className='btn bg-alta-primary border-none hover:bg-hover-primary mt-5'>
-                {/* <label htmlFor={`${addClass !== '' && 'my-modal-5'}`}>Edit Class</label> */}
+                <label htmlFor={'my-modal-5'}>Edit Class</label>
               </button>
             </div>
           </form>

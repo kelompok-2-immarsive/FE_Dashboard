@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: `http://34.71.210.70:80/`,
+    baseURL: `http://35.78.200.36:8080/`,
 })
 
 export default {
@@ -42,7 +42,7 @@ export default {
         }),
         
         //class
-    classList: (token) =>
+    getAllClass: (token) =>
         instance({
             method: `GET`,
             url: `classes`,
@@ -50,8 +50,15 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
+    getClass: (token, id) => 
+        instance({
+            method: `GET`,
+            url: `classes/${id}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
     createClassList: (token, {user_id, class_name}) =>
-
         instance({
             method: `POST`,
             url: `classes`,

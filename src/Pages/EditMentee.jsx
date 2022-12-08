@@ -31,11 +31,10 @@ const EditMentee = () => {
     const [cookie, setCookie] = useCookies()
     const [classList, setClasslist] = useState()
     const navigate = useNavigate()
-  
-    const dataToUpdate = {}
+
 
     const getClass = async() => {
-      await api.classList(cookie.token)
+      await api.getAllClass(cookie.token)
       .then(response => setClasslist(response.data.data))
       .catch(err => console.log(err))
     }
@@ -79,8 +78,8 @@ const EditMentee = () => {
       getClass()
     },[])
 
-    console.log(fullname)
-    console.log(data.id_mantee)
+    // console.log(fullname)
+    // console.log(data.id_mantee)
 
   return (
     <div className='mt-5'>
@@ -169,10 +168,11 @@ const EditMentee = () => {
                 <label className='label-text text-xl w-[30%] text-black-default'>Class</label>
                 {/* <p className='label-text text-xl w-[30%] text-alta-primary'>{menteeClass}</p> */}
                 <div className='w-full'>
-                <select className="select border-alta-primary w-full bg-white text-alta-primary" onChange={(e) => setMenteeClass(e.target.value)}>
+                <select className="select border-alta-primary w-full bg-white text-alta-primary" onChange={(e) => setMenteeClass(e.target.value)} value={menteeClass}>
+                <option>Please choose one option</option>
                     {classList &&
                         classList.map( (opt,index) => {
-                            return <option value={opt.class_id} key={index}>{opt.class_name}</option>
+                            return <option selected={`${menteeClass === opt.class_id && true}`} value={opt.class_id} key={index}>{opt.class_name}</option>
                         })
                     }
                 </select>

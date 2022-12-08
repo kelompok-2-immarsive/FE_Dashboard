@@ -22,13 +22,13 @@ const AddMentee = () => {
   const [category, setCategory] = useState('')
   const [major, setMajor] = useState('')
   const [graduate, setGraduate] = useState('')
-  const [menteeClass, setMenteeClass] = useState('')
+  const [menteeClass, setMenteeClass] = useState()
   const [menteeStatus, setMenteeStatus] = useState('')
   const [cookie, setCookie] = useCookies()
   const [classList, setClasslist] = useState()
 
   const getClass = async() => {
-    await api.classList(cookie.token)
+    await api.getAllClass(cookie.token)
     .then(response => setClasslist(response.data.data))
     .catch(err => console.log(err))
   }
@@ -50,7 +50,7 @@ const AddMentee = () => {
       emergencyStatus,
       category,
       major,
-      graduate
+      graduate,
     })
     .then(response => {
       console.log(response.data.message)
@@ -170,6 +170,7 @@ const AddMentee = () => {
             <label className='label-text text-xl w-[30%] text-black-default'>Class</label>
             <div className='w-full'>
             <select className="select border-alta-primary w-full bg-white text-alta-primary" onChange={(e) => setMenteeClass(e.target.value)}>
+              <option>Please choose one option</option>
                 {classList &&
                     classList.map( (opt,index) => {
                         return <option value={opt.class_id} key={index}>{opt.class_name}</option>
