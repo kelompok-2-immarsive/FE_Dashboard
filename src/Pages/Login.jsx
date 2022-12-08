@@ -17,7 +17,6 @@ const Login = () => {
         e.preventDefault();
         await api.login({ email, password })
             .then(response => {
-                // setData(response.data.data);
                 setCookie("name", response.data.data.name, { path: "/" });
                 setCookie("token", response.data.data.token, { path: "/" });
             })
