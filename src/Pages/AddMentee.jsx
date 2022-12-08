@@ -164,6 +164,7 @@ const AddMentee = () => {
           <Select
             label='Status' option={['Active', 'Graduate', 'Placement']}
             change={(e) => setMenteeStatus(e.target.value)}
+            value={menteeStatus}
           />
           <div className='flex items-center mt-2'>
             <label className='label-text text-xl w-[30%] text-black-default'>Class</label>
