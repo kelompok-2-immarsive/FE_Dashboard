@@ -5,16 +5,13 @@ import { FaRegEye } from 'react-icons/fa';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import { useState } from 'react';
 import api from '../Services/api';
-import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [seePwd, setSeePwd] = useState(false)
-    const navigate = useNavigate();
     const [cookie, setCookie] = useCookies();
-    const [data, setData] = useState();
 
     const onLoginHandler = async (e) => {
         e.preventDefault();
