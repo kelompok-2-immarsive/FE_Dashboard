@@ -5,6 +5,7 @@ import {BsFillTrashFill} from 'react-icons/bs'
 import {AiFillEdit} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft} from 'react-icons/md'
 
+
 const TableList = ({data, paginateFront, paginateBack, disabled, classList,edit, detail, delMentee}) => {
     const navigate = useNavigate()
   return (
@@ -48,7 +49,6 @@ const TableList = ({data, paginateFront, paginateBack, disabled, classList,edit,
                         </div>
                     </div>
                 </td>
-                {/* <td className='bg-white text-black-default'>{mentee.class}<br/></td> */}
                 {classList &&
                     classList.map((kelas) => {
                         if(kelas.class_id === mentee.class_id){return <td className='bg-white text-black-default'>{kelas.class_name}<br/></td>}

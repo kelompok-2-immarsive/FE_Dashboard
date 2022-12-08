@@ -5,7 +5,7 @@ import SearchBar from '../Components/SearchBar'
 import api from '../Services/api'
 import { useState } from 'react'
 import { useCookies } from 'react-cookie'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 const MenteeList = () => {
@@ -34,6 +34,7 @@ const MenteeList = () => {
         console.log(error)
       })
   }
+
 
   const searchMentee = async(menteeName) => {
     await api.getMenteeByName(cookie.token, menteeName)
@@ -68,8 +69,6 @@ const MenteeList = () => {
   const lastUserIndex = currentPage * userPerPage
   const firstUserIndex = lastUserIndex - userPerPage
   const currentUser = listMentee?.slice(firstUserIndex, lastUserIndex)
-  // const paginateFront = () => setCurrentPage(currentPage + 1);
-  // const paginateBack = () => setCurrentPage(currentPage - 1);
   const disabled = currentPage == listMentee?.length/userPerPage ? true : false;
 
   useEffect(() => {
@@ -82,7 +81,7 @@ const MenteeList = () => {
     <div className='p-10'>
       <SearchBar
         title={'Mentee List'} description={'Create, Edit Or Delete Mentees'}
-        add={() => navigate('/mentee/add')} onSearch={(keyword) => searchMentee(keyword)}
+        button={() => navigate('/mentee/add')} onSearch={(keyword) => searchMentee(keyword)}
       />
 
       <div className='mt-20'>

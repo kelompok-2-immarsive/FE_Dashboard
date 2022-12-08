@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 
-const SearchBar = ({title, description, add, onSearch}) => {
+const SearchBar = ({title, description, button, onSearch}) => {
     const [keyword, setKeyword] = useState('')
     const keyPress = (e) => {
         if(e.key === 'Enter'){
@@ -27,12 +27,9 @@ const SearchBar = ({title, description, add, onSearch}) => {
                             onInput={(e) => setKeyword(e.target.value)}
                         />
                     </div>
-                    <button 
-                        className="btn bg-alta-primary hover:bg-hover-primary text-white"
-                        onClick={() => add()}
-                        >Add New</button>
+                    {button}
                 </div>
-            </div>    
+            </div>
             <p className='text-xl p-2'>{description}</p>
         </div>
     )
