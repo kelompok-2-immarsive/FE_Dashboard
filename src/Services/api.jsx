@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: `http://35.202.68.77:80/`,
+    baseURL: `http://34.71.210.70:80/`,
 })
 
 export default {
@@ -41,7 +41,7 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
-    addUser: (token, data) =>
+    addUser: (token, {fullname, email, password, role, phone, address}) =>
         instance({
             method: 'POST',
             url: 'user',
@@ -49,9 +49,8 @@ export default {
                 fullname: fullname,
                 email: email,
                 password: password,
-                role: team,
+                role: role,
                 phone: phone,
-                status: status,
                 address: address,
             },
             headers: {
