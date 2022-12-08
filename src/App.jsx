@@ -15,6 +15,7 @@ import Page404 from './Pages/Page404';
 import AddUser from './Pages/AddUser';
 import EditMentee from './Pages/EditMentee';
 import DetailMenteePage from './Pages/DetailMenteePage';
+import EditPopUp from './Components/EditPopUp';
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
           <Route path='/users' element={<DashboardApp children={<UsersPage />} index={'users'} />} />
           <Route path='/users/add' element={<DashboardApp children={<AddUser />} index={'users'} />} />
           <Route path='/class' element={<DashboardApp children={<ClassList />} index={'class'} />} />
+          <Route path='/class/edit' element={<DashboardApp children={<EditPopUp />} index={'class'} />} />
           <Route path='/*' element={<Page404 />} />
         </Routes>
       </BrowserRouter>
