@@ -40,6 +40,32 @@ export default {
                 Authorization: `Bearer ${token}`
             }
         }),
+
+        deleteUsers: (token, user_id) =>
+        instance({
+            method: `DELETE`,
+            url: `user/${user_id}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
+
+        editUser: (token, users_id, {fullname, email, password, role, phone, address}) =>
+        instance({
+            method: 'PUT',
+            url: `user/${users_id}`,
+            data: {
+                fullname: fullname,
+                email: email,
+                password: password,
+                role: role,
+                phone: phone,
+                address: address,
+            },
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
         
         //class
     getAllClass: (token) =>
@@ -82,7 +108,7 @@ export default {
                 class_name: class_name,
             }
         }),
-    deleteClassList: (token) =>
+    deleteClassList: (token, id_class) =>
         instance({
             method: `DELETE`,
             url: `classes/${id_class}`,

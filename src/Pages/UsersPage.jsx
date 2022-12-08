@@ -17,15 +17,28 @@ const UsersPage = () => {
     };
 
 
+
+    const getAllUsers = async () => {
+        await api.getUsers(cookie.token)
+            .then(response => {
+                setAllUsers(response.data.data)
+                console.log(allUsers)
+            })
+            .catch(err => console.log(err))
+    }
+
+    const getDeleteUsers = async (id) => {
+        await api.deleteUsers(cookie.token, id)
+        .then(response =>{
+            alert('yey ke apus')
+            getAllUsers()
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+
     useEffect(() => {
-        const getAllUsers = async () => {
-            await api.getUsers(cookie.token)
-                .then(response => {
-                    setAllUsers(response.data.data)
-                    console.log(allUsers)
-                })
-                .catch(err => console.log(err))
-        }
         getAllUsers()
     }, [])
 
@@ -48,6 +61,7 @@ const UsersPage = () => {
                             paginateBack={() => setCurrentPage(currentPage - 1)}
                             paginateFront={() => setCurrentPage(currentPage + 1)}
                             disabled={disabled}
+                            delUsers={(id) => getDeleteUsers(id)}
                         />
                         : <p>loading...</p>}
                 </div>

@@ -3,8 +3,9 @@ import { RiBook2Fill } from 'react-icons/ri'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { AiFillEdit } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 
-const UserList = ({ data, paginateFront, paginateBack, disabled }) => {
+const UserList = ({ data, paginateFront, paginateBack, disabled, delUsers }) => {
     return (
         <div>
             <div className="overflow-x-auto max-w-[1600px] mx-auto bg-white px-5">
@@ -50,8 +51,8 @@ const UserList = ({ data, paginateFront, paginateBack, disabled }) => {
                                         <td className='bg-white text-black-default'>{user.phone}</td>
                                         <td className='bg-white text-black-default'>{user.role}</td>
                                         <td className='bg-white text-black-default'>{user.status}</td>
-                                        <td className='bg-white text-black-default cursor-pointer'><RiBook2Fill size={30} /></td>
-                                        <td className='bg-white text-black-default cursor-pointer'><AiFillEdit size={30} /></td>
+                                        <td className='bg-white text-black-default cursor-pointer'><Link to='/users/edit'><RiBook2Fill size={30}/></Link></td>
+                                        <td className='bg-white text-black-default cursor-pointer'><label onClick={() => delUsers(user.id)} className='cursor-pointer' htmlFor=""><AiFillEdit size={30} /></label></td>
                                         <td className='bg-white text-black-default cursor-pointer'><BsFillTrashFill size={30} /></td>
                                     </tr>
                                 )

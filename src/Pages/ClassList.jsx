@@ -87,6 +87,17 @@ const ClassList = () => {
     setClose('my-modal-5')
     sessionStorage.removeItem('id')
   }
+  
+  const deleteClass = async (id) => {
+    await api. deleteClassList(cookie.token, id)
+      .then((response) => {
+        alert("yey ke apus")
+        getClassList()
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
 
   useEffect(() => {
@@ -180,8 +191,6 @@ const ClassList = () => {
         onSubmitHandler={(e) => onSubmitEditClass(e)}
       />
 
-
-      {/* <PopUp /> */}
     </div>
   )
 }

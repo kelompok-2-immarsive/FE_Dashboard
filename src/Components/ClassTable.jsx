@@ -10,8 +10,7 @@ import api from '../Services/api'
 import { useCookies } from 'react-cookie'
 import axios from 'axios'
 
-
-const ClassTable = ({ data, disabled, paginateFront, paginateBack, onUpdateClass }) => {
+const ClassTable = ({data, disabled, paginateFront, paginateBack, onUpdateClass, delMentee}) => {
 
     const [class_name, setClassName] = useState('')
     const [cookie, setCookie] = useCookies()
@@ -99,6 +98,21 @@ const ClassTable = ({ data, disabled, paginateFront, paginateBack, onUpdateClass
                             <button disabled={disabled} onClick={() => paginateFront()} className='cursor-pointer ml-5 text-black-default' size={25}><MdOutlineKeyboardArrowRight /></button>
                         </div>
                     </div>
+                </td>
+                <td className='bg-white flex ml-auto text-black-default cursor-pointer'>
+                <button className='mr-5'> <label className='cursor-pointer' htmlFor="my-modal-5"><AiFillEdit size={30}/></label> </button>
+                <label onClick={() => delMentee(item.class_id)} className='mr-5'><BsFillTrashFill size={30}/></label>
+                <button><RiBook2Fill size={30}/></button>
+                </td>
+                <EditPopUp
+                 editClass={className === ''? item.class_name : className}
+                 setClass={(e) => setClassName(e.target.value)}
+                 onSubmitHandler={(e) => onSubmitEditClass( item.id)}
+              />
+            </tr>
+                )
+                
+            })
 
                 </div>
             </div>
