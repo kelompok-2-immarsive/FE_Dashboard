@@ -78,9 +78,6 @@ const ClassList = () => {
 
   useEffect(() => {
     getClassList()
-    createClass()
-    updateClass()
-    deleteClass()
   }, []);
 
   return (
@@ -98,7 +95,11 @@ const ClassList = () => {
                   :
                   <p className='text-black-default text-5xl'>Loading</p>
               }
-              <PopUp display={display} hiddenPopup={hiddenPopup}/>
+              <PopUp 
+              display={display} 
+              hiddenPopup={hiddenPopup}
+              createClass={createClass}
+              />
               
           </div>
     </div>
