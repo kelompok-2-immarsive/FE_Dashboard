@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: `http://34.71.210.70:80/`,
+    baseURL: `http://35.78.200.36:8080/`,
 })
 
 export default {
@@ -28,6 +28,32 @@ export default {
         instance({
             method: 'POST',
             url: 'user',
+            data: {
+                fullname: fullname,
+                email: email,
+                password: password,
+                role: role,
+                phone: phone,
+                address: address,
+            },
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
+
+        deleteUsers: (token, user_id) =>
+        instance({
+            method: `DELETE`,
+            url: `user/${user_id}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }),
+
+        editUser: (token, users_id, {fullname, email, password, role, phone, address}) =>
+        instance({
+            method: 'PUT',
+            url: `user/${users_id}`,
             data: {
                 fullname: fullname,
                 email: email,
@@ -75,10 +101,10 @@ export default {
                 class_name: class_name,
             }
         }),
-    deleteClassList: (token,id) =>
+    deleteClassList: (token, id_class) =>
         instance({
             method: `DELETE`,
-            url: `classes/${id}`,
+            url: `classes/${id_class}`,
             headers:{
                 Authorization: `Bearer ${token}`
             }

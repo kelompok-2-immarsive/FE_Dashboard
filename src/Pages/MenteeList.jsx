@@ -68,7 +68,7 @@ const MenteeList = () => {
   useEffect(() => {
     getMenteeList()
   }, [])
-
+  
   return (
 
     <div className='p-10'>
