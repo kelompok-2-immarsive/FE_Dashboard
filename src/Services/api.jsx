@@ -1,4 +1,5 @@
 import axios from "axios";
+import { comment } from "postcss";
 
 const instance = axios.create({
     baseURL: `http://35.78.200.36:8080/`,
@@ -201,6 +202,8 @@ export default {
 
             },
         }),
+
+    //feedback
     getMenteeFeedback: (token, idMentee) =>
         instance({
             method: `GET`,
@@ -208,5 +211,19 @@ export default {
             headers: {
                 Authorization: `Bearer ${token}`
             },
+        }),
+    addFeedback: (token, {user_id, status, comment, mentee_id}) =>
+        instance({
+            method: 'POST',
+            url: `feedback`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data:{
+                user_id : user_id,
+                status : status,
+                comment : comment,
+                mentee_id : mentee_id
+            }
         })
 }
