@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import SearchBar from '../Components/SearchBar';
 import { Link, useSearchParams } from 'react-router-dom';
 import api from '../Services/api';
-import { useCookies } from 'react-cookie'
-import UserList from '../Components/UserList';
+import { useCookies } from 'react-cookie';
+import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 
 
 const UserListPage = () => {
@@ -84,7 +84,6 @@ const UserListPage = () => {
                                         <th className='bg-white text-black-default'>Phone</th>
                                         <th className='bg-white text-black-default'>Role</th>
                                         <th className='bg-white text-black-default'>Status</th>
-                                        <th className='bg-white text-black-default'>Detail</th>
                                     </tr>
                                 </thead>
                                 <tbody>
