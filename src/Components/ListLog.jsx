@@ -1,11 +1,8 @@
 import React from 'react';
-import NewlogPopUp from './NewlogPopUp';
 
 const ListLog = ({listLog, allUsers }) => {
     return (
         <div className='w-full'>
-            <label htmlFor="my-modal-4" className="btn bg-alta-secondary hover:bg-hover-primary border-none text-white w-42">Add New Log</label>
-            <NewlogPopUp addLog={() => addLog()}/>
             {listLog && listLog !== null ?
                 listLog.map(log => {
                     return(

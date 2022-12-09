@@ -21,7 +21,6 @@ import UserListPage from './Pages/UserListPage';
 
 function App() {
   const [cookie, setCookie] = useCookies();
-  console.log(cookie.token);
 
   if (cookie.token === null || cookie.token === 'undefined' || cookie.token === undefined ) {
     return (
