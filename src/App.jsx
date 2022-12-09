@@ -15,6 +15,7 @@ import AddUser from './Pages/AddUser';
 import UpdateUser from './Pages/UpdateUser';
 import EditMentee from './Pages/EditMentee';
 import DetailMenteePage from './Pages/DetailMenteePage';
+import EditPopUp from './Components/EditPopUp';
 import UserListPage from './Pages/UserListPage';
 
 

@@ -14,26 +14,38 @@ const DetailMenteePage = () => {
     const location = useLocation()
     const [cookie, setCookie] = useCookies()
     const [classList, setClasslist] = useState()
+    const [allUsers, setAllUsers] = useState()
+    const [user, setUser] = useState()
     const [kelas, setKelas] = useState()
     const mentee = location?.state?.data
-    console.log(location?.state?.data)
 
     const getFeedbacks = async() => {
         await api.getMenteeFeedback(cookie.token, parseInt(mentee.id_mantee))
-        .then(response => setListlog(response.data.data.Feedbacks))
+        .then(response => {
+            setListlog(response.data.data.Feedbacks)
+        })
         .catch(err => console.log(err))
     }
     const getClass = async() => {
-        await api.classList(cookie.token)
+        await api.getAllClass(cookie.token)
         .then(response => {
             setClasslist(response.data.data)
             response.data.data.map(kelas => kelas.class_id === mentee.class_id && setKelas(kelas.class_name))
             })
         .catch(err => console.log(err))
       }
+      const getAllUsers = async () => {
+        await api.getUsers(cookie.token)
+            .then(response => {
+                setAllUsers(response.data.data)
+                console.log(allUsers)
+            })
+            .catch(err => console.log(err))
+    }
     useEffect(()=> {
         getFeedbacks()
         getClass()
+        getAllUsers()
     })
     return (
         <div className='flex gap-6'>
@@ -64,18 +76,6 @@ const DetailMenteePage = () => {
                 </div>
                 <div className="card-body">
                     {data === 'profile' ?
-                        // <DetailMentee
-                        //     address={`Blitar`}
-                        //     category={`Informatics`}
-                        //     emergency_name={`Nurudin`}
-                        //     emergency_phone={`081772665441`}
-                        //     emergency_relation={`Ayah Kandung`}
-                        //     fullname={`Mitro`}
-                        //     gender={`Male`}
-                        //     graduate={`2022`}
-                        //     home_address={`Blitar`}
-                        //     major={`Technology Informatics`}
-                        // />
                         <DetailMentee
                             address={mentee.address}
                             category={mentee.category}
@@ -89,18 +89,8 @@ const DetailMenteePage = () => {
                             major={mentee.major}
                         />
                         :
-                        // <ListLog
-                        //     create_at={`29 Jan 2022`}
-                        //     name={`Bagas`}
-                        //     notes={`lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolorlorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor`}
-                        //     status={`section change`}
-                        // />
                         <ListLog
-                            listLog={listLog}
-                            // create_at={`29 Jan 2022`}
-                            // name={`Bagas`}
-                            // notes={`lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolorlorem ipsum dolor lorem ipsum dolor lorem ipsum dolor lorem ipsum dolor`}
-                            // status={`section change`}
+                            listLog={listLog} allUsers={allUsers}
                         />
                     }
                 </div>

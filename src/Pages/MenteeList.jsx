@@ -79,6 +79,7 @@ const MenteeList = () => {
   const firstUserIndex = lastUserIndex - userPerPage
   const currentUser = filterMentee?.slice(firstUserIndex, lastUserIndex)
   const disabled = currentPage === Math.ceil(listMentee?.length / userPerPage) ? true : false;
+  const disableBack = currentPage === 1 ? true : false
 
   useEffect(() => {
     getMenteeList();
@@ -99,8 +100,8 @@ const MenteeList = () => {
         {
           currentUser && loading === false ?
             <TableList
-              data={currentUser}
-              paginateBack={() => setCurrentPage(currentPage - 1)}
+              data={currentUser} disableBack={disableBack}
+              paginateBack={() => currentPage > 1 && setCurrentPage(currentPage - 1)}
               paginateFront={() => setCurrentPage(currentPage + 1)}
               disabled={disabled} classList={classList}
                 edit={(data) => goEdit(data)}

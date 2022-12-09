@@ -6,7 +6,7 @@ import {AiFillEdit} from 'react-icons/ai'
 import {MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft} from 'react-icons/md'
 
 
-const TableList = ({data, paginateFront, paginateBack, disabled, classList ,edit, detail, delMentee}) => {
+const TableList = ({data, paginateFront, paginateBack, disabled,disableBack, classList ,edit, detail, delMentee}) => {
     const navigate = useNavigate()
   return (
     <div>
@@ -51,10 +51,12 @@ const TableList = ({data, paginateFront, paginateBack, disabled, classList ,edit
                 </td>
                 {classList &&
                     classList.map((kelas) => {
-                        if(kelas.class_id === mentee.class_id){return <td className='bg-white text-black-default'>{kelas.class_name}<br/></td>}
+                        if(kelas.class_id === mentee.class_id){
+                            return <td className='bg-white text-black-default'>{kelas.class_name}<br/></td>
+                        }
                     })
                 }
-                <td className='bg-white text-black-default'>{mentee.mentee_status}</td>
+                <td className='bg-white text-black-default'>{mentee.mentee_status || '-'}</td>
                 <td className='bg-white text-black-default'>{mentee.category}</td>
                 <td className='bg-white text-black-default'>{mentee.gender}</td>
                 <td className='bg-white text-alta-primary cursor-pointer'
@@ -82,7 +84,8 @@ const TableList = ({data, paginateFront, paginateBack, disabled, classList ,edit
                 <label className='text-end mr-5 text-black-default' htmlFor="">1/20</label>
             </div>
             <div className='flex'>
-                <MdOutlineKeyboardArrowLeft onClick={() => paginateBack()} className='cursor-pointer text-black-default' size={25}/>
+                {/* <MdOutlineKeyboardArrowLeft onClick={() => paginateBack()} className='cursor-pointer text-black-default' size={25}/> */}
+                <button disabled={disableBack} onClick={() => paginateBack()}><MdOutlineKeyboardArrowLeft className={`cursor-pointer ml-5 ${disableBack ? `text-grey-default` : `text-black-default`} `} size={25}/></button>
                 <button disabled={disabled} onClick={() => paginateFront()}><MdOutlineKeyboardArrowRight className={`cursor-pointer ml-5 ${disabled ? `text-grey-default` : `text-black-default`} `} size={25}/></button>
             </div>
         </div>
