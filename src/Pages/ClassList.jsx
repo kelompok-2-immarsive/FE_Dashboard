@@ -10,6 +10,7 @@ import { RiBook2Fill } from 'react-icons/ri'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { AiFillEdit } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from 'react-icons/md'
+import { useSearchParams } from 'react-router-dom'
 
 const ClassList = () => {
 
@@ -22,6 +23,15 @@ const ClassList = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [userPerPage, setUserPerPage] = useState(5)
   const [edit, setEdit] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [keyword, setKeyword] = useState(() => {
+    return searchParams.get('keyword') || ''
+  });
+
+  const onKeywordChangeHandler = (keyword) => {
+    setKeyword(keyword)
+    setSearchParams({keyword});
+  }
 
 
   const getClassList = async () => {
@@ -102,9 +112,15 @@ const ClassList = () => {
 
   }, []);
 
+  const filteredClass = listClass.filter((data) => {
+    return data.class_name.toLowerCase().includes(
+      keyword.toLowerCase()
+    );
+  });
+  
   const lastUserIndex = currentPage * userPerPage
   const firstUserIndex = lastUserIndex - userPerPage
-  const currentUser = listClass?.slice(firstUserIndex, lastUserIndex)
+  const currentUser = filteredClass?.slice(firstUserIndex, lastUserIndex)
   const disabled = currentPage === Math.ceil(listClass?.length / userPerPage) ? true : false;
   const firstDisabled = currentPage === 1 ? true : false;
 
@@ -114,6 +130,8 @@ const ClassList = () => {
         <SearchBar
           title={'Class List'} description={'Create, Edit Or Delete Class'}
           button={<label htmlFor="my-modal-4" className="btn bg-alta-primary hover:bg-hover-primary border-none">Add New</label>}
+          keyword={keyword}
+          keywordChange={onKeywordChangeHandler}
         />
         {
           currentUser && loading === false ?
