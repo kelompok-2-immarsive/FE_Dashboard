@@ -2,14 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { GoSearch } from 'react-icons/go';
 
-const SearchBar = ({title, description, button, onSearch}) => {
-    const [keyword, setKeyword] = useState('')
-    const keyPress = (e) => {
-        if(e.key === 'Enter'){
-            onSearch(keyword)
-            console.log(keyword)
-        }
-    }
+const SearchBar = ({title, description, button, keyword, keywordChange}) => {
 
     return (
         <div className='text-alta-primary w-full'>
@@ -23,8 +16,8 @@ const SearchBar = ({title, description, button, onSearch}) => {
                         <input
                             type="text"
                             className="block p-2 pl-10 input input-bordered border-alta-primary caret-alta-primary w-full bg-white"
-                            placeholder="Search Here..." onKeyPress={(e) => keyPress(e)}
-                            onInput={(e) => setKeyword(e.target.value)}
+                            placeholder="Search Here..." value={keyword}
+                            onInput={(e) => keywordChange(e.target.value)}
                         />
                     </div>
                     {button}

@@ -10,6 +10,7 @@ import { RiBook2Fill } from 'react-icons/ri'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { AiFillEdit } from 'react-icons/ai'
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowLeft } from 'react-icons/md'
+import { useSearchParams } from 'react-router-dom'
 
 const ClassList = () => {
 
@@ -22,6 +23,15 @@ const ClassList = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [userPerPage, setUserPerPage] = useState(5)
   const [edit, setEdit] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [keyword, setKeyword] = useState(() => {
+    return searchParams.get('keyword') || ''
+  });
+
+  const onKeywordChangeHandler = (keyword) => {
+    setKeyword(keyword)
+    setSearchParams({keyword});
+  }
 
 
   const getClassList = async () => {
@@ -29,23 +39,32 @@ const ClassList = () => {
       .then((response) => {
         setLoading(true)
         setListClass(response.data.data)
-        console.log(response.data.data)
         setLoading(false)
+      })
+      .catch((error) => {
+        alert(error)
+      })
+  }
+
+  const deleteClass = async (id) => {
+    await api.deleteClassList(cookie.token, id)
+      .then((response) => {
+        alert(response.data.message)
+        getClassList()
       })
       .catch((error) => {
         console.log(error)
       })
   }
 
-
   const createClass = async () => {
     await api.createClassList(cookie.token, { user_id, class_name })
       .then((response) => {
-        console.log(response)
+        alert('Berhasil di tambahkan')
         getClassList();
       })
       .catch((error) => {
-        console.log(error)
+        alert(error)
       })
 
   }
@@ -64,15 +83,14 @@ const ClassList = () => {
         setEdit(response.data.data.class_name)
       })
       .catch(error => {
-        console.log(error)
+        alert(error)
       })
   }
   
   const updateClass = async () => {
     await api.updateClassList(cookie.token, parseInt(sessionStorage.getItem("id")), { user_id, class_name })
       .then((response) => {
-        // alert('data berhasil diubah')
-        console.log(response)
+        alert(response.data.message)
         getClassList();
       })
       .catch((error) => {
@@ -87,17 +105,6 @@ const ClassList = () => {
     setClose('my-modal-5')
     sessionStorage.removeItem('id')
   }
-  
-  const deleteClass = async (id) => {
-    await api. deleteClassList(cookie.token, id)
-      .then((response) => {
-        alert("yey ke apus")
-        getClassList()
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
 
 
   useEffect(() => {
@@ -105,9 +112,15 @@ const ClassList = () => {
 
   }, []);
 
+  const filteredClass = listClass.filter((data) => {
+    return data.class_name.toLowerCase().includes(
+      keyword.toLowerCase()
+    );
+  });
+  
   const lastUserIndex = currentPage * userPerPage
   const firstUserIndex = lastUserIndex - userPerPage
-  const currentUser = listClass?.slice(firstUserIndex, lastUserIndex)
+  const currentUser = filteredClass?.slice(firstUserIndex, lastUserIndex)
   const disabled = currentPage === Math.ceil(listClass?.length / userPerPage) ? true : false;
   const firstDisabled = currentPage === 1 ? true : false;
 
@@ -117,10 +130,12 @@ const ClassList = () => {
         <SearchBar
           title={'Class List'} description={'Create, Edit Or Delete Class'}
           button={<label htmlFor="my-modal-4" className="btn bg-alta-primary hover:bg-hover-primary border-none">Add New</label>}
+          keyword={keyword}
+          keywordChange={onKeywordChangeHandler}
         />
         {
           currentUser && loading === false ?
-            <div className="overflow-x-auto max-w-[1600px] mx-auto mt-10 rounded-xl bg-white px-5">
+            <div className="overflow-x-auto max-w-[1600px] mx-auto mt-10 rounded-xl bg-white p-10">
               <table className="table w-full bg-white">
                 {/* <!-- head --> */}
                 <thead >
@@ -155,7 +170,7 @@ const ClassList = () => {
                           </td>
                           <td className='bg-white flex ml-auto text-black-default cursor-pointer'>
                             <button className='mr-5' onClick={() => onClickEdit(item.class_id)}> <label className='cursor-pointer' htmlFor="my-modal-5"><AiFillEdit size={30} /></label> </button>
-                            <button className='mr-5'><BsFillTrashFill size={30} /></button>
+                            <button className='mr-5' onClick={() => deleteClass(item.class_id)}><BsFillTrashFill size={30} /></button>
                             <button><RiBook2Fill size={30} /></button>
                           </td>
                         </tr>

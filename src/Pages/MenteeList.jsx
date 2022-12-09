@@ -5,7 +5,7 @@ import SearchBar from '../Components/SearchBar'
 import api from '../Services/api'
 import { useState } from 'react'
 import { useCookies } from 'react-cookie'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useSearchParams } from 'react-router-dom'
 
 
 const MenteeList = () => {
@@ -14,9 +14,18 @@ const MenteeList = () => {
   const [classList, setClasslist] = useState()
   const [cookie, setCookie] = useCookies();
   const navigate = useNavigate()
-  const [userData, setUserData] = useState([])
+  // const [userData, setUserData] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [userPerPage, setUserPerPage] = useState(5)
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [keyword, setKeyword] = useState(() => {
+    return searchParams.get('keyword') || ''
+  });
+
+  const onKeywordChangeHandler = (keyword) => {
+    setKeyword(keyword)
+    setSearchParams({keyword});
+  }
 
   const getMenteeList = async () => {
     await api.tableMenteeList(cookie.token)
@@ -33,12 +42,6 @@ const MenteeList = () => {
   const getClass = async() => {
     await api.getAllClass(cookie.token)
     .then(response => setClasslist(response.data.data))
-    .catch(err => console.log(err))
-  }
-
-  const searchMentee = async(menteeName) => {
-    await api.getMenteeByName(cookie.token, menteeName)
-    .then(response => console.log(response.data))
     .catch(err => console.log(err))
   }
 
@@ -66,9 +69,15 @@ const MenteeList = () => {
     })
   }
 
+  const filterMentee = listMentee.filter((mentee) => {
+    return mentee.name.toLowerCase().includes(
+      keyword.toLowerCase()
+    );
+  });
+
   const lastUserIndex = currentPage * userPerPage
   const firstUserIndex = lastUserIndex - userPerPage
-  const currentUser = listMentee?.slice(firstUserIndex, lastUserIndex)
+  const currentUser = filterMentee?.slice(firstUserIndex, lastUserIndex)
   const disabled = currentPage === Math.ceil(listMentee?.length / userPerPage) ? true : false;
   const disableBack = currentPage === 1 ? true : false
 
@@ -82,7 +91,9 @@ const MenteeList = () => {
     <div className='p-10'>
       <SearchBar
         title={'Mentee List'} description={'Create, Edit Or Delete Mentees'}
-        button={<Link to="/mentee/add" className="btn bg-alta-primary hover:bg-hover-primary text-white">Add New</Link>} onSearch={(keyword) => searchMentee(keyword)}
+        button={<Link to="/mentee/add" className="btn bg-alta-primary hover:bg-hover-primary text-white">Add New</Link>} 
+        keywordChange={onKeywordChangeHandler}
+        keyword={keyword}
       />
 
       <div className='mt-20'>
