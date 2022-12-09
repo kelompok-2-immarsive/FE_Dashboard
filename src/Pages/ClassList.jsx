@@ -90,7 +90,7 @@ const ClassList = () => {
   const updateClass = async () => {
     await api.updateClassList(cookie.token, parseInt(sessionStorage.getItem("id")), { user_id, class_name })
       .then((response) => {
-        alert(response)
+        alert(response.data.message)
         getClassList();
       })
       .catch((error) => {
