@@ -31,7 +31,7 @@ function App() {
       </BrowserRouter>
     )
   }else{
-    if(cookie.role === 'Admin'){
+    if(cookie.role === 'Admin' || cookie.role === 'admin'){
       return (
         <BrowserRouter>
           <Routes>
