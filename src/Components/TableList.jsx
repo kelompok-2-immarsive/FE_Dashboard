@@ -53,8 +53,6 @@ const TableList = ({data, paginateFront, paginateBack, disabled,disableBack, cla
                     classList.map((kelas) => {
                         if(kelas.class_id === mentee.class_id){
                             return <td className='bg-white text-black-default'>{kelas.class_name}<br/></td>
-                        }else{
-                            return <td className='bg-white text-black-default'>-</td>
                         }
                     })
                 }
